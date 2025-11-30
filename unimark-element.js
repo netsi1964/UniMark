@@ -8,6 +8,7 @@
  * - Custom Header handling (converts # to Bold with spacing)
  * - Font Style Selection (Sans, Serif, Script, Fraktur, etc.)
  * - Link transformation
+ * - Code Block protection (contents become monospace, no other styles applied)
  */
 
 // --- Unicode Maps ---
@@ -55,11 +56,31 @@ const transformText = (text, type) => Array.from(text).map(c => getMappedChar(c,
 // --- Parser Logic ---
 const parseMarkdown = (input, styleMode = 'mixed') => {
   let result = input;
+  const codeBlocks = [];
 
-  // 1. Handle Links: [Text](URL) -> Text (URL)
+  // 1. Extract Code Blocks to protect them from other formatting
+  // We handle both triple backticks (```...```) and single backticks (`...`)
+  // Triple backticks
+  result = result.replace(/```([\s\S]*?)```/g, (match, content) => {
+    const monospaced = transformText(content, 'MONOSPACE');
+    // Removed underscore to prevent italic rule from matching the placeholder
+    const token = `%%CODEBLOCK${codeBlocks.length}%%`; 
+    codeBlocks.push(monospaced);
+    return token;
+  });
+
+  // Single backticks (inline code)
+  result = result.replace(/`([^`]+)`/g, (match, content) => {
+    const monospaced = transformText(content, 'MONOSPACE');
+    const token = `%%CODEBLOCK${codeBlocks.length}%%`;
+    codeBlocks.push(monospaced);
+    return token;
+  });
+
+  // 2. Handle Links: [Text](URL) -> Text (URL)
   result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)');
 
-  // 2. Determine Style Mappings based on Mode
+  // 3. Determine Style Mappings based on Mode
   let boldSansType = 'BOLD_SANS';
   let boldSerifType = 'BOLD_SERIF';
   let italicSansType = 'ITALIC_SANS';
@@ -69,13 +90,11 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
 
   switch (styleMode) {
     case 'sans':
-      // Force everything to Sans
       boldSerifType = 'BOLD_SANS';
       italicSerifType = 'ITALIC_SANS';
       boldItalicSerifType = 'BOLD_ITALIC_SANS';
       break;
     case 'serif':
-      // Force everything to Serif
       boldSansType = 'BOLD_SERIF';
       italicSansType = 'ITALIC_SERIF';
       boldItalicSansType = 'BOLD_ITALIC_SERIF';
@@ -83,15 +102,15 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     case 'script':
       boldSansType = 'BOLD_SCRIPT';
       boldSerifType = 'BOLD_SCRIPT';
-      italicSansType = 'SCRIPT'; // Script is naturally italic-like
+      italicSansType = 'SCRIPT'; 
       italicSerifType = 'SCRIPT';
-      boldItalicSansType = 'BOLD_SCRIPT'; // No distinct bold-italic script in standard unicode maps
+      boldItalicSansType = 'BOLD_SCRIPT';
       boldItalicSerifType = 'BOLD_SCRIPT';
       break;
     case 'fraktur':
       boldSansType = 'BOLD_FRAKTUR';
       boldSerifType = 'BOLD_FRAKTUR';
-      italicSansType = 'FRAKTUR'; // Fraktur is the "regular" variant here
+      italicSansType = 'FRAKTUR'; 
       italicSerifType = 'FRAKTUR';
       boldItalicSansType = 'BOLD_FRAKTUR';
       boldItalicSerifType = 'BOLD_FRAKTUR';
@@ -106,15 +125,16 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
       break;
     case 'mixed':
     default:
-      // Keep original behavior: **=Sans, __=Serif
       break;
   }
 
-  // 3. Handle Headers: Replace # Header with Bold text (using current primary bold style)
-  // We use the 'boldSansType' as the primary bold for headers.
+  // 4. Handle Headers: Replace # Header with Bold text (using current primary bold style)
   result = result.replace(/^(#{1,6})\s+(.*)$/gm, (match, hashes, content) => {
     return `\n${transformText(content.trim(), boldSansType)}\n`;
   });
+
+  // 5. Handle Blockquotes: Replace > with vertical bar
+  result = result.replace(/^>\s?(.*)$/gm, '▎ $1');
 
   const RULES = [
     { regex: /\*\*\*(.+?)\*\*\*/g, type: boldItalicSansType },
@@ -123,16 +143,16 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     { regex: /__(.+?)__/g, type: boldSerifType },
     { regex: /\*([^\s*](?:[^\\*]*[^\s*])?)\*/g, type: italicSansType },
     { regex: /_([^\s_](?:[^\\_]*[^\s_])?)_/g, type: italicSerifType },
-    { regex: /`([^`]+)`/g, type: 'MONOSPACE' },
     { regex: /~~(.+?)~~/g, type: 'STRIKETHROUGH' },
   ];
 
   RULES.forEach(rule => {
-    // If we already transformed headers, we don't want to re-transform them if they contain markdown chars
-    // But standard markdown allows formatted headers. 
-    // Since we manually transformed headers above, we skip that part for the regexes if possible, 
-    // but simple replacement works fine for remaining tokens.
     result = result.replace(rule.regex, (_, content) => transformText(content, rule.type));
+  });
+
+  // 6. Restore Code Blocks
+  codeBlocks.forEach((block, index) => {
+    result = result.replace(`%%CODEBLOCK${index}%%`, block);
   });
 
   return result;
@@ -387,7 +407,7 @@ class UnimarkEditor extends HTMLElement {
         <div class="editor-body">
           <!-- Input Pane -->
           <div class="pane">
-             <textarea spellcheck="false" placeholder="Type Markdown here...&#10;# Headers convert to bold&#10;**Bold** becomes sans bold&#10;\`Code\` becomes monospace"># Welcome to UniMark
+             <textarea spellcheck="false" placeholder="Type Markdown here...&#10;# Headers convert to bold&#10;**Bold** becomes sans bold&#10;> Quotes convert to vertical bars&#10;\`Code\` becomes monospace"># Welcome to UniMark
 
 Start typing in the left panel to see the magic happen!
 
@@ -397,6 +417,18 @@ Start typing in the left panel to see the magic happen!
 _Italic Text_ converts to serif italic.
 \`Monospace\` looks like code.
 ~~Strikethrough~~ works too.
+
+# Quotes
+
+> This is a quote block.
+> It stands out nicely!
+
+# Code Blocks
+
+\`\`\`
+# This header remains formatted as code
+And **bold** remains as code too!
+\`\`\`
 
 # Links
 
