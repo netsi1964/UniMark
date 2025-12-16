@@ -153,7 +153,7 @@ const MAPS = {
   BOLD_SCRIPT: createMap(NORMAL, '𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩0123456789'),
   FRAKTUR: createMap(NORMAL, '𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔲𝔳𝔴𝔵𝔶𝔷𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ0123456789'),
   BOLD_FRAKTUR: createMap(NORMAL, '𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅0123456789'),
-  DOUBLE_STRUCK: createMap(NORMAL, '𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝙢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡'),
+  DOUBLE_STRUCK: createMap(NORMAL, '𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝙢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕛𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡'),
 };
 
 const getMappedChar = (char, type) => {
@@ -182,18 +182,9 @@ const TABLE_STYLES = {
   }
 };
 
-const getVisualWidth = (str) => {
-  let width = 0;
-  // Iterate by code point to handle surrogates properly
-  for (const char of str) {
-    // Rough check for wide characters (CJK, Fullwidth forms, etc.)
-    if (char.match(/[\u1100-\u115F\u2329\u232A\u2E80-\u303E\u3040-\uA4CF\uAC00-\uD7A3\uF900-\uFAFF\uFE10-\uFE19\uFE30-\uFE6F\uFF00-\uFF60\uFFE0-\uFFE6]|[\uD83C-\uDBFF\uDC00-\uDFFF]/)) {
-      width += 2;
-    } else {
-      width += 1;
-    }
-  }
-  return width;
+const getVisualLength = (str) => {
+  // Uses the spread operator to correctly count surrogate pairs as 1 visual unit
+  return [...str].length;
 };
 
 const getAlignment = (separatorLine) => {
@@ -248,14 +239,14 @@ const formatTable = (input, styleName) => {
       const mono = transformText(cell, 'MONOSPACE');
       row[i] = mono;
       
-      const w = getVisualWidth(mono);
+      const w = getVisualLength(mono);
       colWidths[i] = Math.max(colWidths[i] || 0, w);
     });
   });
 
   // 3. Render
   const padCell = (content, width, align) => {
-      const contentW = getVisualWidth(content);
+      const contentW = getVisualLength(content);
       const space = width - contentW;
       if (space < 0) return ' ' + content + ' '; 
       
