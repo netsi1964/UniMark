@@ -9,6 +9,7 @@
  * - Font Style Selection (Sans, Serif, Script, Fraktur, etc.)
  * - Link transformation
  * - Code Block protection (contents become monospace, no other styles applied)
+ * - UTF-8 Table Converter (Markdown Table -> Box Drawing)
  */
 
 // --- Sample Markdown ---
@@ -98,13 +99,14 @@ hello("World")
 
 ## Tables
 
-Tables are created using pipes and hyphens:
+UniMark automatically renders Markdown tables as Unicode Box Drawing tables in the preview! 
 
-| Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
-| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
-| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
-| Row 3, Col 1 | Row 3, Col 2 | Row 3, Col 3 |
+You can also convert the source text using the Table button in the toolbar.
+
+| Style | Result |
+|---|---|
+| Single | ┌───┐ |
+| Double | ╔═══╗ |
 
 ## Task Lists
 
@@ -162,13 +164,155 @@ const getMappedChar = (char, type) => {
 
 const transformText = (text, type) => Array.from(text).map(c => getMappedChar(c, type)).join('');
 
+// --- Table Helper Logic ---
+const TABLE_STYLES = {
+  single: {
+    tl: '┌', tm: '┬', tr: '┐',
+    vl: '│',
+    ml: '├', mm: '┼', mr: '┤',
+    bl: '└', bm: '┴', br: '┘',
+    h: '─'
+  },
+  double: {
+    tl: '╔', tm: '╦', tr: '╗',
+    vl: '║',
+    ml: '╠', mm: '╬', mr: '╣',
+    bl: '╚', bm: '╩', br: '╝',
+    h: '═'
+  }
+};
+
+const getVisualWidth = (str) => {
+  let width = 0;
+  // Iterate by code point to handle surrogates properly
+  for (const char of str) {
+    // Rough check for wide characters (CJK, Fullwidth forms, etc.)
+    if (char.match(/[\u1100-\u115F\u2329\u232A\u2E80-\u303E\u3040-\uA4CF\uAC00-\uD7A3\uF900-\uFAFF\uFE10-\uFE19\uFE30-\uFE6F\uFF00-\uFF60\uFFE0-\uFFE6]|[\uD83C-\uDBFF\uDC00-\uDFFF]/)) {
+      width += 2;
+    } else {
+      width += 1;
+    }
+  }
+  return width;
+};
+
+const getAlignment = (separatorLine) => {
+  const cells = separatorLine.split('|').map(c => c.trim());
+  // Handle pipe at start/end
+  if (separatorLine.trim().startsWith('|')) cells.shift();
+  if (separatorLine.trim().endsWith('|')) cells.pop();
+
+  return cells.map(c => {
+    if (c.startsWith(':') && c.endsWith(':')) return 'center';
+    if (c.endsWith(':')) return 'right';
+    return 'left';
+  });
+};
+
+const formatTable = (input, styleName) => {
+  const chars = TABLE_STYLES[styleName] || TABLE_STYLES.single;
+  
+  // 1. Parse Input
+  const lines = input.trim().split('\n');
+  const matrix = [];
+  let alignments = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i].trim();
+    if (!line) continue;
+    
+    // Check if it's a separator row (e.g. |---| or | :--- |)
+    if (/^\|?[\s\-:|]+\|?$/.test(line) && line.includes('-')) {
+        if (alignments.length === 0) {
+            alignments = getAlignment(line);
+        }
+        continue;
+    }
+
+    // Split by pipe
+    let cells = line.split('|');
+    if (line.startsWith('|')) cells.shift();
+    if (line.endsWith('|')) cells.pop();
+    
+    cells = cells.map(c => c.trim());
+    matrix.push(cells);
+  }
+  
+  if (matrix.length === 0) return input;
+
+  // 2. Transform Content to Monospace & Calculate Widths
+  const colWidths = [];
+  matrix.forEach(row => {
+    row.forEach((cell, i) => {
+      // Transform content to Unicode Monospace for better alignment in plain text
+      const mono = transformText(cell, 'MONOSPACE');
+      row[i] = mono;
+      
+      const w = getVisualWidth(mono);
+      colWidths[i] = Math.max(colWidths[i] || 0, w);
+    });
+  });
+
+  // 3. Render
+  const padCell = (content, width, align) => {
+      const contentW = getVisualWidth(content);
+      const space = width - contentW;
+      if (space < 0) return ' ' + content + ' '; 
+      
+      if (align === 'right') {
+          return ' ' + ' '.repeat(space) + content + ' ';
+      } else if (align === 'center') {
+          const left = Math.floor(space / 2);
+          const right = space - left;
+          return ' ' + ' '.repeat(left) + content + ' '.repeat(right) + ' ';
+      } else {
+          // Default left
+          return ' ' + content + ' '.repeat(space) + ' ';
+      }
+  };
+
+  const renderRow = (row) => {
+    return chars.vl + row.map((cell, i) => {
+       const w = colWidths[i] || 0;
+       const align = alignments[i] || 'left';
+       return padCell(cell, w, align);
+    }).join(chars.vl) + chars.vl;
+  };
+
+  const renderDivider = (left, mid, right, fill) => {
+    return left + colWidths.map(w => fill.repeat(w + 2)).join(mid) + right;
+  };
+
+  const output = [];
+  
+  // Top
+  output.push(renderDivider(chars.tl, chars.tm, chars.tr, chars.h));
+  
+  // Header
+  if (matrix.length > 0) {
+      output.push(renderRow(matrix[0]));
+  }
+  
+  // Middle & Body
+  if (matrix.length > 1) {
+      output.push(renderDivider(chars.ml, chars.mm, chars.mr, chars.h));
+      for (let i = 1; i < matrix.length; i++) {
+          output.push(renderRow(matrix[i]));
+      }
+  }
+  
+  // Bottom
+  output.push(renderDivider(chars.bl, chars.bm, chars.br, chars.h));
+  
+  return output.join('\n');
+};
+
 // --- Parser Logic ---
 const parseMarkdown = (input, styleMode = 'mixed') => {
   let result = input;
   const codeBlocks = [];
 
-  // 1. Extract Code Blocks to protect them from other formatting
-  // Triple backticks
+  // 1. Extract Code Blocks
   result = result.replace(/```([\s\S]*?)```/g, (match, content) => {
     const monospaced = transformText(content, 'MONOSPACE');
     const token = `%%CODEBLOCK${codeBlocks.length}%%`; 
@@ -176,7 +320,6 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     return token;
   });
   
-  // Single backticks
   result = result.replace(/`([^`]+)`/g, (match, content) => {
     const monospaced = transformText(content, 'MONOSPACE');
     const token = `%%CODEBLOCK${codeBlocks.length}%%`;
@@ -184,26 +327,32 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     return token;
   });
 
-  // 2. Links: [Text](URL) -> Text (URL)
+  // 1.5 Tables: Convert pipe tables to unicode box drawing for display
+  result = result.replace(/^(\|.*\|(?:\r?\n|$))+/gm, (match) => {
+     // Ensure it looks like a table (has separator row with dashes)
+     if (match.includes('|-') || match.includes('| -') || match.includes('|:-')) {
+        return formatTable(match, 'single');
+     }
+     return match;
+  });
+
+  // 2. Links
   result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)');
 
-  // 3. Images: ![Alt](URL) -> 🖼️ Alt
+  // 3. Images
   result = result.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '🖼️ $1');
 
   // 4. Task Lists
-  // Checked
   result = result.replace(/^(\s*)-\s\[x\]\s/gim, '$1☑ ');
-  // Unchecked
   result = result.replace(/^(\s*)-\s\[ \]\s/gim, '$1☐ ');
 
-  // 5. Unordered Lists (Bulleted)
-  // Matches - , * , + at start of line with optional indentation
+  // 5. Lists
   result = result.replace(/^(\s*)[-*+]\s/gm, '$1• ');
 
-  // 6. Horizontal Rules (---, ***, ___)
+  // 6. HR
   result = result.replace(/^[-*_]{3,}$/gm, '━━━━━━━━━━━━━━━━');
 
-  // 7. Determine Style Mappings
+  // 7. Styles
   let boldSansType = 'BOLD_SANS';
   let boldSerifType = 'BOLD_SERIF';
   let italicSansType = 'ITALIC_SANS';
@@ -251,7 +400,7 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
       break;
   }
 
-  // 8. Headers: Replace # Header with Bold text
+  // 8. Headers
   result = result.replace(/^(#{1,6})\s+(.*)$/gm, (match, hashes, content) => {
     return `\n${transformText(content.trim(), boldSansType)}\n`;
   });
@@ -259,7 +408,7 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
   // 9. Blockquotes
   result = result.replace(/^>\s?(.*)$/gm, '▎ $1');
 
-  // 10. Inline Formatting Rules
+  // 10. Inline
   const RULES = [
     { regex: /\*\*\*(.+?)\*\*\*/g, type: boldItalicSansType },
     { regex: /___(.+?)___/g, type: boldItalicSerifType },
@@ -274,7 +423,7 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     result = result.replace(rule.regex, (_, content) => transformText(content, rule.type));
   });
 
-  // 11. Restore Code Blocks
+  // 11. Restore
   codeBlocks.forEach((block, index) => {
     result = result.replace(`%%CODEBLOCK${index}%%`, block);
   });
@@ -476,7 +625,6 @@ class UnimarkEditor extends HTMLElement {
           background: var(--accent);
           border-color: var(--accent);
         }
-        /* Override for icon inside copy button to follow specific states if needed, though general rule handles it well */
 
         /* Modal */
         .modal-overlay {
@@ -526,8 +674,29 @@ class UnimarkEditor extends HTMLElement {
           font-family: monospace;
         }
         .key-value { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
-        .close-btn { 
-          /* Close btn overrides */
+        
+        /* Table Modal Action Buttons */
+        .table-actions {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+          margin-top: 1rem;
+        }
+        .action-btn {
+          flex: 1;
+          background: #374151;
+          color: white;
+          padding: 0.75rem;
+          border-radius: 0.5rem;
+          font-family: monospace;
+          font-size: 0.9rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .action-btn:hover {
+          background: var(--accent);
         }
 
         @container editor (max-width: 600px) {
@@ -568,6 +737,11 @@ class UnimarkEditor extends HTMLElement {
           </button>
           
           <div class="separator"></div>
+          
+          <!-- Table Button -->
+          <button data-action="table-modal" title="Convert Table">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </button>
 
           <button data-action="example" class="text-btn" title="Load Example">
             Example
@@ -630,7 +804,7 @@ And **bold** remains as code too!
           </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Info Modal -->
         <div class="modal-overlay" id="modal">
           <div class="modal">
             <div class="modal-header">
@@ -656,6 +830,36 @@ And **bold** remains as code too!
             </div>
           </div>
         </div>
+
+        <!-- Table Selection Modal -->
+        <div class="modal-overlay" id="table-modal">
+          <div class="modal">
+            <div class="modal-header">
+              <span class="modal-title">Convert Table</span>
+              <button class="close-btn" data-action="close-table-modal" title="Close">
+                <svg viewBox="0 0 24 24" style="stroke: #f87171;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="modal-content">
+               <p style="margin-bottom: 1rem; color: #9ca3af;">Select text containing a markdown table first.</p>
+               <div class="table-actions">
+                  <button class="action-btn" data-action="table-single">
+                    <span style="font-size:1.1rem; font-weight:bold;">Single Line</span>
+                    <pre style="margin:0; font-size:0.75em;">┌─────┬─────┐
+│ A   │ B   │
+└─────┴─────┘</pre>
+                  </button>
+                  <button class="action-btn" data-action="table-double">
+                    <span style="font-size:1.1rem; font-weight:bold;">Double Line</span>
+                    <pre style="margin:0; font-size:0.75em;">╔═════╦═════╗
+║ A   ║ B   ║
+╚═════╩═════╝</pre>
+                  </button>
+               </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     `;
   }
@@ -665,6 +869,7 @@ And **bold** remains as code too!
     this.outputDiv = this.shadowRoot.querySelector('.output');
     this.styleSelector = this.shadowRoot.getElementById('style-selector');
     this.modal = this.shadowRoot.getElementById('modal');
+    this.tableModal = this.shadowRoot.getElementById('table-modal');
 
     // Live update
     this.textarea.addEventListener('input', () => this.updateOutput());
@@ -709,6 +914,16 @@ And **bold** remains as code too!
       this.modal.classList.add('active');
     } else if (action === 'close-modal') {
       this.modal.classList.remove('active');
+    } else if (action === 'table-modal') {
+      this.tableModal.classList.add('active');
+    } else if (action === 'close-table-modal') {
+      this.tableModal.classList.remove('active');
+    } else if (action === 'table-single') {
+      this.convertSelectionToTable('single');
+      this.tableModal.classList.remove('active');
+    } else if (action === 'table-double') {
+      this.convertSelectionToTable('double');
+      this.tableModal.classList.remove('active');
     } else if (action === 'copy-input') {
       this.copyToClipboard(this.textarea.value, btn);
     } else if (action === 'copy-output') {
@@ -728,6 +943,49 @@ And **bold** remains as code too!
     this.textarea.value = before + prefix + selection + suffix + after;
     this.textarea.focus();
     this.textarea.setSelectionRange(start + prefix.length, end + prefix.length);
+    this.updateOutput();
+  }
+
+  convertSelectionToTable(style) {
+    let start = this.textarea.selectionStart;
+    let end = this.textarea.selectionEnd;
+    let text = this.textarea.value;
+    let selection = text.substring(start, end);
+
+    // Auto-select surrounding table if selection is empty/caret
+    if (start === end) {
+        // Search backwards for start of block
+        const lastDoubleNewlineBefore = text.lastIndexOf('\n\n', start);
+        const blockStart = lastDoubleNewlineBefore === -1 ? 0 : lastDoubleNewlineBefore + 2;
+        
+        // Search forwards for end of block
+        const firstDoubleNewlineAfter = text.indexOf('\n\n', start);
+        const blockEnd = firstDoubleNewlineAfter === -1 ? text.length : firstDoubleNewlineAfter;
+        
+        const block = text.substring(blockStart, blockEnd);
+        // Check if block looks like a table
+        if (block.includes('|') && block.includes('\n')) {
+             this.textarea.setSelectionRange(blockStart, blockEnd);
+             start = blockStart;
+             end = blockEnd;
+             selection = block;
+        }
+    }
+
+    if (!selection.includes('|') || !selection.includes('\n')) {
+        // Fallback: Do nothing if clearly not a table
+        return; 
+    }
+
+    const formatted = formatTable(selection, style);
+
+    const before = text.substring(0, start);
+    const after = text.substring(end);
+
+    this.textarea.value = before + formatted + after;
+    this.textarea.focus();
+    // Select new table
+    this.textarea.setSelectionRange(start, start + formatted.length);
     this.updateOutput();
   }
 
