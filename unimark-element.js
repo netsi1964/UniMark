@@ -412,11 +412,13 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
   const RULES = [
     { regex: /\*\*\*(.+?)\*\*\*/g, type: boldItalicSansType },
     { regex: /___(.+?)___/g, type: boldItalicSerifType },
-    { regex: /\*\*(.+?)\*\*/g, type: boldSansType },
-    { regex: /__(.+?)__/g, type: boldSerifType },
+    // Update to [\s\S] to support multiline matching
+    { regex: /\*\*([\s\S]+?)\*\*/g, type: boldSansType },
+    { regex: /__([\s\S]+?)__/g, type: boldSerifType },
+    // Keep italic restrictive to avoid matching across large blocks accidentally
     { regex: /\*([^\s*](?:[^\\*]*[^\s*])?)\*/g, type: italicSansType },
     { regex: /_([^\s_](?:[^\\_]*[^\s_])?)_/g, type: italicSerifType },
-    { regex: /~~(.+?)~~/g, type: 'STRIKETHROUGH' },
+    { regex: /~~([\s\S]+?)~~/g, type: 'STRIKETHROUGH' },
   ];
 
   RULES.forEach(rule => {
