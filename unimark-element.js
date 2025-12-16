@@ -11,6 +11,115 @@
  * - Code Block protection (contents become monospace, no other styles applied)
  */
 
+// --- Sample Markdown ---
+// using \x60 for backticks to ensure safe parsing inside the template literal
+const SAMPLE_MARKDOWN = `# Markdown Formatting Guide
+
+This document provides a comprehensive guide to various Markdown formatting features.
+
+## Text Formatting
+
+You can format text in several ways:
+
+- **Bold text** is created using two asterisks or underscores: \x60**bold text**\x60 or \x60__bold text__\x60.
+- *Italic text* is created with a single asterisk or underscore: \x60*italic text*\x60 or \x60_italic text_\x60.
+- ***Bold and italic text*** can be combined: \x60***bold and italic***\x60.
+- Strikethrough text is done with two tildes: \x60~~strikethrough~~\x60.
+- \x60Inline code\x60 is wrapped in backticks: \x60\x60 \x60inline code\x60 \x60\x60.
+
+## Headings
+
+There are six levels of headings in Markdown:
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+## Lists
+
+You can create both ordered and unordered lists.
+
+### Unordered List
+
+- Item 1
+- Item 2
+  - Sub-item 2.1
+  - Sub-item 2.2
+- Item 3
+
+### Ordered List
+
+1. First item
+2. Second item
+   1. Sub-item 2.1
+   2. Sub-item 2.2
+3. Third item
+
+## Links and Images
+
+- **Links**: You can create a link like this: [Visit GitHub](https://github.com).
+- **Images**: Here is an image with alt text:
+  ![GitHub Octocat](https://github.githubassets.com/images/modules/logos_page/Octocat.png)
+
+## Blockquotes
+
+Blockquotes are useful for quoting text from another source:
+
+> "The advance of technology is based on making it fit in so that you don't really even notice it, so it's part of everyday life."
+> \\- Bill Gates
+
+## Horizontal Rule
+
+You can create a horizontal rule to separate content:
+
+---
+
+## Code Blocks
+
+You can create fenced code blocks with syntax highlighting by specifying the language:
+
+\x60\x60\x60javascript
+function greet(name) {
+  console.log(\x60Hello, \${name}!\x60);
+}
+
+greet("World");
+\x60\x60\x60
+
+\x60\x60\x60python
+def hello(name):
+    print(f"Hello, {name}!")
+
+hello("World")
+\x60\x60\x60
+
+## Tables
+
+Tables are created using pipes and hyphens:
+
+| Header 1 | Header 2 | Header 3 |
+|----------|----------|----------|
+| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |
+| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3 |
+| Row 3, Col 1 | Row 3, Col 2 | Row 3, Col 3 |
+
+## Task Lists
+
+Task lists are a great way to track to-do items:
+
+- [x] Complete feature A
+- [ ] Implement feature B
+- [ ] Fix bug C
+
+## Emoji
+
+You can also include emojis in your Markdown text! :smile: :rocket:
+
+Enjoy using Markdown!`;
+
 // --- Unicode Maps ---
 const LOWER = 'abcdefghijklmnopqrstuvwxyz';
 const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -40,7 +149,7 @@ const MAPS = {
   // New Styles
   SCRIPT: createMap(NORMAL, '𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵0123456789'),
   BOLD_SCRIPT: createMap(NORMAL, '𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩0123456789'),
-  FRAKTUR: createMap(NORMAL, '𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ0123456789'),
+  FRAKTUR: createMap(NORMAL, '𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔲𝔳𝔴𝔵𝔶𝔷𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ0123456789'),
   BOLD_FRAKTUR: createMap(NORMAL, '𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅0123456789'),
   DOUBLE_STRUCK: createMap(NORMAL, '𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝙢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡'),
 };
@@ -59,17 +168,15 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
   const codeBlocks = [];
 
   // 1. Extract Code Blocks to protect them from other formatting
-  // We handle both triple backticks (```...```) and single backticks (`...`)
   // Triple backticks
   result = result.replace(/```([\s\S]*?)```/g, (match, content) => {
     const monospaced = transformText(content, 'MONOSPACE');
-    // Removed underscore to prevent italic rule from matching the placeholder
     const token = `%%CODEBLOCK${codeBlocks.length}%%`; 
     codeBlocks.push(monospaced);
     return token;
   });
-
-  // Single backticks (inline code)
+  
+  // Single backticks
   result = result.replace(/`([^`]+)`/g, (match, content) => {
     const monospaced = transformText(content, 'MONOSPACE');
     const token = `%%CODEBLOCK${codeBlocks.length}%%`;
@@ -77,10 +184,26 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     return token;
   });
 
-  // 2. Handle Links: [Text](URL) -> Text (URL)
+  // 2. Links: [Text](URL) -> Text (URL)
   result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)');
 
-  // 3. Determine Style Mappings based on Mode
+  // 3. Images: ![Alt](URL) -> 🖼️ Alt
+  result = result.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '🖼️ $1');
+
+  // 4. Task Lists
+  // Checked
+  result = result.replace(/^(\s*)-\s\[x\]\s/gim, '$1☑ ');
+  // Unchecked
+  result = result.replace(/^(\s*)-\s\[ \]\s/gim, '$1☐ ');
+
+  // 5. Unordered Lists (Bulleted)
+  // Matches - , * , + at start of line with optional indentation
+  result = result.replace(/^(\s*)[-*+]\s/gm, '$1• ');
+
+  // 6. Horizontal Rules (---, ***, ___)
+  result = result.replace(/^[-*_]{3,}$/gm, '━━━━━━━━━━━━━━━━');
+
+  // 7. Determine Style Mappings
   let boldSansType = 'BOLD_SANS';
   let boldSerifType = 'BOLD_SERIF';
   let italicSansType = 'ITALIC_SANS';
@@ -128,14 +251,15 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
       break;
   }
 
-  // 4. Handle Headers: Replace # Header with Bold text (using current primary bold style)
+  // 8. Headers: Replace # Header with Bold text
   result = result.replace(/^(#{1,6})\s+(.*)$/gm, (match, hashes, content) => {
     return `\n${transformText(content.trim(), boldSansType)}\n`;
   });
 
-  // 5. Handle Blockquotes: Replace > with vertical bar
+  // 9. Blockquotes
   result = result.replace(/^>\s?(.*)$/gm, '▎ $1');
 
+  // 10. Inline Formatting Rules
   const RULES = [
     { regex: /\*\*\*(.+?)\*\*\*/g, type: boldItalicSansType },
     { regex: /___(.+?)___/g, type: boldItalicSerifType },
@@ -150,7 +274,7 @@ const parseMarkdown = (input, styleMode = 'mixed') => {
     result = result.replace(rule.regex, (_, content) => transformText(content, rule.type));
   });
 
-  // 6. Restore Code Blocks
+  // 11. Restore Code Blocks
   codeBlocks.forEach((block, index) => {
     result = result.replace(`%%CODEBLOCK${index}%%`, block);
   });
@@ -177,7 +301,6 @@ class UnimarkEditor extends HTMLElement {
   }
 
   render() {
-    // Note: Backticks inside the template literal must be escaped with a backslash
     this.shadowRoot.innerHTML = `
       <style>
         :host {
@@ -190,11 +313,11 @@ class UnimarkEditor extends HTMLElement {
           --text-muted: #9ca3af;
           --accent: #4f46e5;
           --accent-hover: #4338ca;
+          --modal-overlay: rgba(0, 0, 0, 0.75);
         }
         
         * { box-sizing: border-box; }
 
-        /* Main Container with Container Query Support */
         .container {
           display: flex;
           flex-direction: column;
@@ -206,13 +329,11 @@ class UnimarkEditor extends HTMLElement {
           min-height: 500px;
           overflow: hidden;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          
-          /* Container Query Configuration */
           container-type: inline-size;
           container-name: editor;
+          position: relative;
         }
 
-        /* Toolbar */
         .toolbar {
           display: flex;
           align-items: center;
@@ -221,14 +342,13 @@ class UnimarkEditor extends HTMLElement {
           background: #111827;
           border-bottom: 1px solid var(--border);
           overflow-x: auto;
-          scrollbar-width: none; /* Firefox */
+          scrollbar-width: none;
         }
-        .toolbar::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+        .toolbar::-webkit-scrollbar { display: none; }
 
         button {
           background: transparent;
           border: none;
-          color: var(--text-muted);
           padding: 0.5rem;
           border-radius: 0.375rem;
           cursor: pointer;
@@ -239,28 +359,45 @@ class UnimarkEditor extends HTMLElement {
         }
         button:hover {
           background: rgba(255,255,255,0.1);
+        }
+        button.text-btn {
+          font-size: 0.85rem;
+          font-weight: 500;
+          padding: 0.5rem 0.75rem;
+          white-space: nowrap;
+          color: #e5e7eb;
+        }
+        button.text-btn:hover {
           color: white;
         }
-        button:active {
-          transform: translateY(1px);
-        }
-        button svg {
+
+        /* Forces all SVGs in buttons to be visible and white/grey */
+        svg {
           width: 20px;
           height: 20px;
+          fill: none;
+          stroke: #e5e7eb; /* Bright text color */
+          stroke-width: 2.2px;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          display: block;
+        }
+        
+        button:hover svg {
+          stroke: #ffffff;
         }
 
-        /* Dropdown Styling */
         select {
           appearance: none;
           background: #1f2937;
-          border: 1px solid var(--border);
-          color: var(--text);
+          border: 1px solid #4b5563;
+          color: #ffffff;
           padding: 0.4rem 2rem 0.4rem 0.75rem;
           border-radius: 0.375rem;
           font-size: 0.85rem;
           cursor: pointer;
           outline: none;
-          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23e5e7eb' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
           background-position: right 0.5rem center;
           background-repeat: no-repeat;
           background-size: 1.5em 1.5em;
@@ -276,7 +413,6 @@ class UnimarkEditor extends HTMLElement {
           margin: 0 0.5rem;
         }
 
-        /* Editor Split Pane */
         .editor-body {
           flex: 1;
           display: flex;
@@ -292,7 +428,6 @@ class UnimarkEditor extends HTMLElement {
           min-height: 200px;
         }
 
-        /* Textarea Styling */
         textarea {
           flex: 1;
           width: 100%;
@@ -307,11 +442,8 @@ class UnimarkEditor extends HTMLElement {
           line-height: 1.75;
           outline: none;
         }
-        textarea::placeholder {
-          color: #4b5563;
-        }
+        textarea::placeholder { color: #4b5563; }
 
-        /* Output Styling */
         .output {
           flex: 1;
           padding: 1.5rem;
@@ -325,7 +457,6 @@ class UnimarkEditor extends HTMLElement {
           word-break: break-word;
         }
 
-        /* Floating Copy Buttons */
         .copy-overlay {
           position: absolute;
           top: 0.75rem;
@@ -333,42 +464,81 @@ class UnimarkEditor extends HTMLElement {
           opacity: 0;
           transition: opacity 0.2s ease-in-out;
         }
-        .pane:hover .copy-overlay, 
-        .copy-overlay:focus-within {
-          opacity: 1;
-        }
+        .pane:hover .copy-overlay, .copy-overlay:focus-within { opacity: 1; }
         
         .copy-btn-mini {
           background: rgba(31, 41, 55, 0.8);
           backdrop-filter: blur(4px);
           border: 1px solid var(--border);
-          color: var(--text-muted);
           padding: 0.4rem;
         }
         .copy-btn-mini:hover {
           background: var(--accent);
           border-color: var(--accent);
-          color: white;
+        }
+        /* Override for icon inside copy button to follow specific states if needed, though general rule handles it well */
+
+        /* Modal */
+        .modal-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--modal-overlay);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 50;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s;
+        }
+        .modal-overlay.active {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .modal {
+          background: #111827;
+          border: 1px solid var(--border);
+          border-radius: 0.5rem;
+          padding: 1.5rem;
+          width: 90%;
+          max-width: 400px;
+          max-height: 90%;
+          overflow-y: auto;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+          border-bottom: 1px solid var(--border);
+          padding-bottom: 0.5rem;
+        }
+        .modal-title { font-weight: bold; font-size: 1.25rem; }
+        .modal-content { font-size: 0.9rem; line-height: 1.6; color: #d1d5db; }
+        .modal-content code {
+          background: #374151;
+          padding: 0.1rem 0.3rem;
+          border-radius: 0.25rem;
+          font-family: monospace;
+        }
+        .key-value { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .close-btn { 
+          /* Close btn overrides */
         }
 
-        /* Container Query Styles */
-        /* When the container is less than 600px wide, switch to vertical stack */
         @container editor (max-width: 600px) {
-          .editor-body {
-            flex-direction: column;
-          }
-          .output {
-            border-left: none;
-            border-top: 1px solid var(--border);
-          }
-          .pane {
-            min-height: auto;
-            flex: 1 1 50%;
-          }
+          .editor-body { flex-direction: column; }
+          .output { border-left: none; border-top: 1px solid var(--border); }
+          .pane { min-height: auto; flex: 1 1 50%; }
         }
       </style>
 
       <div class="container">
+        <!-- Toolbar -->
         <div class="toolbar">
           <select id="style-selector" title="Choose Font Style">
             <option value="mixed">Mix (Sans/Serif)</option>
@@ -382,32 +552,42 @@ class UnimarkEditor extends HTMLElement {
           <div class="separator"></div>
 
           <button data-action="fmt" data-prefix="**" data-suffix="**" title="Bold">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
           </button>
           <button data-action="fmt" data-prefix="_" data-suffix="_" title="Italic">
-             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>
+             <svg viewBox="0 0 24 24"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>
           </button>
           <button data-action="fmt" data-prefix="___" data-suffix="___" title="Bold Italic">
-             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
+             <svg viewBox="0 0 24 24"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
           </button>
-          <button data-action="fmt" data-prefix="\`" data-suffix="\`" title="Monospace">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <button data-action="fmt" data-prefix="\x60" data-suffix="\x60" title="Monospace">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </button>
           <button data-action="fmt" data-prefix="~~" data-suffix="~~" title="Strikethrough">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4H9a3 3 0 0 0-2.83 4"/><path d="M14 12a4 4 0 0 1 0 8H6"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M16 4H9a3 3 0 0 0-2.83 4"/><path d="M14 12a4 4 0 0 1 0 8H6"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+          </button>
+          
+          <div class="separator"></div>
+
+          <button data-action="example" class="text-btn" title="Load Example">
+            Example
+          </button>
+
+          <button data-action="info" title="Markdown Guide">
+             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           </button>
           
           <div class="separator"></div>
           
           <button data-action="clear" title="Clear All">
-             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#ef4444"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+             <svg viewBox="0 0 24 24" style="stroke: #ef4444;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </button>
         </div>
 
+        <!-- Editor Area -->
         <div class="editor-body">
-          <!-- Input Pane -->
           <div class="pane">
-             <textarea spellcheck="false" placeholder="Type Markdown here...&#10;# Headers convert to bold&#10;**Bold** becomes sans bold&#10;> Quotes convert to vertical bars&#10;\`Code\` becomes monospace"># Welcome to UniMark
+             <textarea spellcheck="false" placeholder="Type Markdown here...&#10;# Headers convert to bold&#10;**Bold** becomes sans bold&#10;> Quotes convert to vertical bars&#10;\x60Code\x60 becomes monospace"># Welcome to UniMark
 
 Start typing in the left panel to see the magic happen!
 
@@ -415,7 +595,7 @@ Start typing in the left panel to see the magic happen!
 
 **Bold Text** converts to unicode bold.
 _Italic Text_ converts to serif italic.
-\`Monospace\` looks like code.
+\x60Monospace\x60 looks like code.
 ~~Strikethrough~~ works too.
 
 # Quotes
@@ -425,33 +605,55 @@ _Italic Text_ converts to serif italic.
 
 # Code Blocks
 
-\`\`\`
+\x60\x60\x60
 # This header remains formatted as code
 And **bold** remains as code too!
-\`\`\`
+\x60\x60\x60
 
 # Links
 
-[My Website](https://www.netsi.dk) converts to text with url.
-
-# Headers
-
-Headers (using #) are automatically converted to **Bold Text** with spacing around them.</textarea>
+[My Website](https://www.netsi.dk) converts to text with url.</textarea>
              <div class="copy-overlay">
                 <button class="copy-btn-mini" data-action="copy-input" title="Copy Markdown Source">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
              </div>
           </div>
 
-          <!-- Output Pane -->
           <div class="pane">
             <div class="output"></div>
             <div class="copy-overlay">
                 <button class="copy-btn-mini" data-action="copy-output" title="Copy Unicode Result">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 </button>
              </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal-overlay" id="modal">
+          <div class="modal">
+            <div class="modal-header">
+              <span class="modal-title">Markdown Guide</span>
+              <button class="close-btn" data-action="close-modal" title="Close">
+                <svg viewBox="0 0 24 24" style="stroke: #f87171;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="modal-content">
+              <div class="key-value"><span>Bold</span> <code>**text**</code></div>
+              <div class="key-value"><span>Italic</span> <code>*text*</code> or <code>_text_</code></div>
+              <div class="key-value"><span>Bold Italic</span> <code>***text***</code></div>
+              <div class="key-value"><span>Monospace</span> <code>\x60text\x60</code></div>
+              <div class="key-value"><span>Strikethrough</span> <code>~~text~~</code></div>
+              <div class="key-value"><span>Headers</span> <code># Header</code></div>
+              <div class="key-value"><span>Lists</span> <code>- Item</code></div>
+              <div class="key-value"><span>Task Lists</span> <code>- [x] Done</code></div>
+              <div class="key-value"><span>Quote</span> <code>> Text</code></div>
+              <div class="key-value"><span>Code Block</span> <code>\x60\x60\x60</code></div>
+              <div class="key-value"><span>Horizontal Rule</span> <code>---</code></div>
+              <div class="key-value"><span>Link</span> <code>[Text](URL)</code></div>
+              <div class="key-value"><span>Image</span> <code>![Alt](URL)</code></div>
+            </div>
           </div>
         </div>
       </div>
@@ -462,6 +664,7 @@ Headers (using #) are automatically converted to **Bold Text** with spacing arou
     this.textarea = this.shadowRoot.querySelector('textarea');
     this.outputDiv = this.shadowRoot.querySelector('.output');
     this.styleSelector = this.shadowRoot.getElementById('style-selector');
+    this.modal = this.shadowRoot.getElementById('modal');
 
     // Live update
     this.textarea.addEventListener('input', () => this.updateOutput());
@@ -475,7 +678,6 @@ Headers (using #) are automatically converted to **Bold Text** with spacing arou
     // Buttons
     this.shadowRoot.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        // Handle clicks on SVG elements inside button
         const target = e.currentTarget;
         this.handleAction(target);
       });
@@ -499,6 +701,14 @@ Headers (using #) are automatically converted to **Bold Text** with spacing arou
       this.textarea.value = '';
       this.updateOutput();
       this.textarea.focus();
+    } else if (action === 'example') {
+      this.textarea.value = SAMPLE_MARKDOWN;
+      this.updateOutput();
+      this.textarea.scrollTop = 0;
+    } else if (action === 'info') {
+      this.modal.classList.add('active');
+    } else if (action === 'close-modal') {
+      this.modal.classList.remove('active');
     } else if (action === 'copy-input') {
       this.copyToClipboard(this.textarea.value, btn);
     } else if (action === 'copy-output') {
@@ -525,9 +735,8 @@ Headers (using #) are automatically converted to **Bold Text** with spacing arou
     try {
       await navigator.clipboard.writeText(text);
       
-      // Temporary visual feedback
       const originalHtml = btn.innerHTML;
-      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" color="#4ade80"><polyline points="20 6 9 17 4 12"/></svg>`;
+      btn.innerHTML = `\x3Csvg viewBox="0 0 24 24" style="stroke: #4ade80;"><polyline points="20 6 9 17 4 12"/>\x3C/svg>`;
       
       setTimeout(() => {
         btn.innerHTML = originalHtml;

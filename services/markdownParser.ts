@@ -59,28 +59,41 @@ export const parseMarkdownToUnicode = (markdown: string): string => {
     return token;
   });
 
-  // 2. Handle Links: [Text](URL) -> Text (URL)
+  // 2. Links: [Text](URL) -> Text (URL)
   result = result.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)');
 
-  // 3. Handle Headers first: Convert # Header to Bold Sans with newlines
-  // Input: # My Title -> Output: \n**My Title**\n (which is then caught by bold rule)
-  // Replaced logic: Instead of just turning it into text, we ensure it has surrounding whitespace
-  // and remove the hashes completely, styling it as bold.
+  // 3. Images: ![Alt](URL) -> 🖼️ Alt
+  result = result.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '🖼️ $1');
+
+  // 4. Task Lists
+  // Checked
+  result = result.replace(/^(\s*)-\s\[x\]\s/gim, '$1☑ ');
+  // Unchecked
+  result = result.replace(/^(\s*)-\s\[ \]\s/gim, '$1☐ ');
+
+  // 5. Unordered Lists (Bulleted)
+  // Matches - , * , + at start of line with optional indentation
+  result = result.replace(/^(\s*)[-*+]\s/gm, '$1• ');
+
+  // 6. Horizontal Rules (---, ***, ___)
+  result = result.replace(/^[-*_]{3,}$/gm, '━━━━━━━━━━━━━━━━');
+
+  // 7. Headers: Convert # Header to Bold Sans with newlines
   result = result.replace(/^(#{1,6})\s+(.*)$/gm, (match, hashes, content) => {
     return `**${content.trim()}**`;
   });
 
-  // 4. Handle Blockquotes: Replace > with vertical bar
+  // 8. Blockquotes: Replace > with vertical bar
   result = result.replace(/^>\s?(.*)$/gm, '▎ $1');
 
-  // 5. Process Standard Rules
+  // 9. Process Standard Rules
   RULES.forEach(rule => {
     result = result.replace(rule.regex, (match, content) => {
       return transformText(content, rule.type);
     });
   });
   
-  // 6. Restore Code Blocks
+  // 10. Restore Code Blocks
   codeBlocks.forEach((block, index) => {
     result = result.replace(`%%CODEBLOCK${index}%%`, block);
   });
