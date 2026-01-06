@@ -1,0 +1,30 @@
+export enum TransformType {
+  BOLD_SANS = 'BOLD_SANS',
+  BOLD_SERIF = 'BOLD_SERIF',
+  ITALIC_SANS = 'ITALIC_SANS',
+  ITALIC_SERIF = 'ITALIC_SERIF',
+  BOLD_ITALIC_SANS = 'BOLD_ITALIC_SANS',
+  BOLD_ITALIC_SERIF = 'BOLD_ITALIC_SERIF',
+  MONOSPACE = 'MONOSPACE',
+  SCRIPT = 'SCRIPT',
+  BOLD_SCRIPT = 'BOLD_SCRIPT',
+  FRAKTUR = 'FRAKTUR',
+  BOLD_FRAKTUR = 'BOLD_FRAKTUR',
+  DOUBLE_STRUCK = 'DOUBLE_STRUCK',
+  STRIKETHROUGH = 'STRIKETHROUGH',
+  UNDERLINE = 'UNDERLINE',
+  BUBBLE = 'BUBBLE',
+  BUBBLE_FILLED = 'BUBBLE_FILLED',
+  SQUARE = 'SQUARE',
+  SQUARE_FILLED = 'SQUARE_FILLED',
+}
+
+export interface TransformationRule {
+  pattern: RegExp;
+  type: TransformType;
+  description: string;
+}
+
+export interface CharMap {
+  [key: string]: string;
+}

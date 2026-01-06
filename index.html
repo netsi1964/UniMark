@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniMark - Unicode Markdown Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+            },
+            colors: {
+              gray: {
+                850: '#1f2937',
+                900: '#111827',
+                925: '#131925', 
+                950: '#030712',
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <script type="module" src="./unimark-element.ts"></script>
+</head>
+  <body class="bg-gray-950 text-gray-100 min-h-screen antialiased flex flex-col items-center justify-center p-4">
+    
+    <header class="mb-6 text-center space-y-2 mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-2 text-center">
+        UniMark
+      </h1>
+      <p class="text-gray-400 text-sm max-w-md text-center mx-auto">
+        Standalone Vanilla JS Custom Element.<br/>
+        Import <code>&lt;unimark-editor&gt;</code> and you are good to go.
+      </p>
+    </header>
+
+    <main class="w-full max-w-6xl h-[80vh]">
+      <!-- The Vanilla JS Custom Element -->
+      <unimark-editor></unimark-editor>
+    </main>
+
+  </body>
+</html>

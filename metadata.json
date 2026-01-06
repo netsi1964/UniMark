@@ -1,0 +1,5 @@
+{
+  "name": "UniMark - Unicode Markdown Converter",
+  "description": "A robust Markdown editor that compiles standard Markdown syntax into stylized Unicode characters (e.g., **bold** becomes 𝗯𝗼𝗹𝗱) for use on social media platforms like Twitter/X, Instagram, and LinkedIn.",
+  "requestFramePermissions": []
+}
