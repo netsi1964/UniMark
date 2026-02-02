@@ -25,3 +25,12 @@ dist-ssr
 
 # Environment variables
 .env
+
+# Build outputs
+dist
+dist-electron
+
+# Temporary test/debug files
+test-*.cjs
+electron-debug.cjs
+metadata.json

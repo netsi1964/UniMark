@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+    <title>UniMark - Desktop Editor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #030712;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        unimark-editor {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <unimark-editor></unimark-editor>
+    
+    <!-- Load the built UniMark web component -->
+    <script type="module" src="./unimark-element.js"></script>
+    
+    <!-- Load renderer logic -->
+    <script type="module" src="./renderer.js"></script>
+</body>
+</html>
