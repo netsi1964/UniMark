@@ -13,7 +13,7 @@
     "electron:build": "node build-electron.mjs",
     "electron:dev": "npm run build && npm run electron:build && ELECTRON_RUN_AS_NODE= electron .",
     "electron:package": "electron-builder",
-    "release": "gh workflow run release.yml -f version="
+    "release": "./scripts/release.sh"
   },
   "main": "dist-electron/main.cjs",
   "build": {

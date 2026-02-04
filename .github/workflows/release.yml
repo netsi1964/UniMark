@@ -66,7 +66,7 @@ jobs:
 
       # 6. Pakker Electron-app med electron-builder
       - name: Package Electron app
-        run: npm run electron:package
+        run: npx electron-builder --publish never
 
       # 7. Uploader installer-filer til eksisterende release
       - name: Upload release assets
