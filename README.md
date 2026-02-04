@@ -4,6 +4,10 @@ UniMark is a lightweight, dependency-free web component (`<unimark-editor>`) tha
 
 ![UniMark Desktop App](assets/unimark-desktop.png)
 
+<div style="display: flex; justify-content: center;">
+<a href="https://www.buymeacoffee.com/netsi1964" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40"></a>
+</div>
+    
 ## Download
 
 🎉 **UniMark is now available as a desktop app!** Download and run directly on your computer – no browser required.
