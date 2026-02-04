@@ -2,6 +2,16 @@
 
 UniMark is a lightweight, dependency-free web component (`<unimark-editor>`) that converts Markdown syntax into specialized Unicode characters. This allows you to create styled text (Bold, Italic, Script, Fraktur, etc.) that can be copied and pasted anywhere plain text is supported (social media, bios, chats).
 
+## Download
+
+**[Latest Release](https://github.com/netsi1964/UniMark/releases/latest)**
+
+| Platform | File | Installation |
+|----------|------|--------------|
+| macOS | `.dmg` | Åbn, træk til Applications |
+| Windows | `.exe` | Kør installeren |
+| Linux | `.AppImage` | `chmod +x UniMark.AppImage && ./UniMark.AppImage` |
+
 ## Features
 
 -   **Zero Dependencies**: Run as a standalone web component. No React or framework required at runtime.

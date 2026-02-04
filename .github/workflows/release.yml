@@ -64,10 +64,16 @@ jobs:
       - name: Build Electron app
         run: npm run electron:build
 
-      # 6. Uploader artifacts til eksisterende release
+      # 6. Pakker Electron-app med electron-builder
+      - name: Package Electron app
+        run: npm run electron:package
+
+      # 7. Uploader installer-filer til eksisterende release
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.version }}
           files: |
-            dist-electron/**
+            release/*.dmg
+            release/*.exe
+            release/*.AppImage

@@ -1,6 +1,6 @@
 {
   "name": "unimark-app",
-  "productName": "unimark",
+  "productName": "UniMark",
   "description": "Unicode Markdown Converter - Desktop app",
   "author": "Sten Hougaard",
   "private": true,
@@ -12,9 +12,31 @@
     "preview": "vite preview",
     "electron:build": "node build-electron.mjs",
     "electron:dev": "npm run build && npm run electron:build && ELECTRON_RUN_AS_NODE= electron .",
-    "electron:package": "npm run build && npm run electron:build && electron-builder"
+    "electron:package": "electron-builder",
+    "release": "gh workflow run release.yml -f version="
   },
   "main": "dist-electron/main.cjs",
+  "build": {
+    "appId": "com.stenhougaard.unimark",
+    "productName": "UniMark",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist-electron/**/*"
+    ],
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility"
+    }
+  },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "concurrently": "^9.2.1",
