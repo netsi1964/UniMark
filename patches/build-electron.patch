@@ -1,0 +1,40 @@
+--- a/build-electron.mjs
++++ b/build-electron.mjs
+@@ -1,12 +1,7 @@
+ #!/usr/bin/env node
+ import * as esbuild from 'esbuild';
+-import { copyFile, mkdir } from 'fs/promises';
+-import { dirname } from 'path';
+-import { fileURLToPath } from 'url';
++import { copyFile, mkdir, access } from 'fs/promises';
+ 
+-const __filename = fileURLToPath(import.meta.url);
+-const __dirname = dirname(__filename);
+-
+ /**
+  * Build script for Electron app using esbuild
+  * 
+@@ -31,6 +26,15 @@
+     // Ensure output directory exists
+     await mkdir('dist-electron', { recursive: true });
+ 
++    // Ensure web build exists (fail fast in CI)
++    try {
++      await access('dist/unimark-element.js');
++    } catch {
++      throw new Error(
++        'Missing dist/unimark-element.js. Run web build before electron build.'
++      );
++    }
++
+     // Build main process
+     console.log('📦 Bundling main process...');
+     await esbuild.build({
+@@ -78,7 +82,6 @@
+     const packageJson = {
+       type: 'commonjs'
+     };
+-    await mkdir('dist-electron', { recursive: true });
+     const { writeFile } = await import('fs/promises');
+     await writeFile('dist-electron/package.json', JSON.stringify(packageJson, null, 2));
+     console.log('✅ package.json created\n');

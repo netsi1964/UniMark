@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 import * as esbuild from 'esbuild';
-import { copyFile, mkdir } from 'fs/promises';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { copyFile, mkdir, access } from 'fs/promises';
 
 /**
  * Build script for Electron app using esbuild
@@ -18,7 +13,7 @@ const __dirname = dirname(__filename);
 const commonConfig = {
   bundle: true,
   platform: 'node',
-  target: 'node20',
+  target: 'node22',
   external: ['electron'], // Don't bundle electron - it's provided by the runtime
   sourcemap: true,
   minify: false, // Keep readable for debugging
@@ -30,6 +25,15 @@ async function build() {
   try {
     // Ensure output directory exists
     await mkdir('dist-electron', { recursive: true });
+
+    // Ensure web build exists (fail fast in CI)
+    try {
+      await access('dist/unimark-element.js');
+    } catch {
+      throw new Error(
+        'Missing dist/unimark-element.js. Run web build before electron build.'
+      );
+    }
 
     // Build main process
     console.log('📦 Bundling main process...');
@@ -59,7 +63,7 @@ async function build() {
       outfile: 'dist-electron/renderer.js',
       format: 'iife', // IIFE format for browser context
       platform: 'browser', // Renderer runs in browser context
-      target: 'es2020',
+      target: 'es2022',
     });
     console.log('✅ Renderer script bundled\n');
 
@@ -78,7 +82,6 @@ async function build() {
     const packageJson = {
       type: 'commonjs'
     };
-    await mkdir('dist-electron', { recursive: true });
     const { writeFile } = await import('fs/promises');
     await writeFile('dist-electron/package.json', JSON.stringify(packageJson, null, 2));
     console.log('✅ package.json created\n');

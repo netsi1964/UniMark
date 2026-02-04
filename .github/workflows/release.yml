@@ -1,0 +1,73 @@
+name: Release Electron App
+# Navn på workflowet (vises i GitHub Actions UI)
+
+on:
+  workflow_dispatch:
+    # Gør workflowet manuelt triggerbart
+    # fx via GitHub UI eller `gh workflow run`
+    inputs:
+      version:
+        description: "Release version (fx v0.1.0)"
+        required: true
+
+jobs:
+  # Job 1: Opretter GitHub Release én gang (ingen matrix)
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.version }}
+          name: UniMark ${{ inputs.version }}
+          draft: false
+          prerelease: false
+
+  # Job 2: Bygger på alle platforme og uploader til eksisterende release
+  build:
+    needs: create-release
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+
+    strategy:
+      matrix:
+        # De tre officielle GitHub runners
+        os:
+          - macos-latest
+          - windows-latest
+          - ubuntu-latest
+
+    steps:
+      # 1. Henter repoets kode
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Installerer Node.js (samme version overalt)
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # 3. Installerer dependencies fra package-lock.json
+      # npm ci er hurtigere og deterministisk i CI
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Bygger web-komponenten først (kræves af Electron-build)
+      - name: Build web component
+        run: npm run build
+
+      # 5. Bygger Electron-app'en
+      - name: Build Electron app
+        run: npm run electron:build
+
+      # 6. Uploader artifacts til eksisterende release
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.version }}
+          files: |
+            dist-electron/**
