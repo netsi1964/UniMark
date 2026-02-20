@@ -4,7 +4,7 @@
   "description": "Unicode Markdown Converter - Desktop app",
   "author": "Sten Hougaard",
   "private": true,
-  "version": "0.1.3",
+  "version": "0.1.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,6 +13,8 @@
     "electron:build": "node build-electron.mjs",
     "electron:dev": "npm run build && npm run electron:build && ELECTRON_RUN_AS_NODE= electron .",
     "electron:package": "electron-builder",
+    "neutralino:dev": "npm run build && cp dist/unimark-element.js unimark-desktop/resources/js/ && cd unimark-desktop && npx --yes @neutralinojs/neu run",
+    "neutralino:build": "npm run build && cp dist/unimark-element.js unimark-desktop/resources/js/ && cd unimark-desktop && npx --yes @neutralinojs/neu build",
     "release": "./scripts/release.sh"
   },
   "main": "dist-electron/main.cjs",

@@ -77,3 +77,40 @@ jobs:
             release/*.dmg
             release/*.exe
             release/*.AppImage
+
+  # Job 3: Bygger Neutralino-app (ultra letvægt, bygger alle platforme fra Ubuntu)
+  build-neutralino:
+    needs: create-release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Neutralino app
+        run: npm run neutralino:build
+
+      - name: Rename binaries for clarity
+        run: |
+          mv unimark-desktop/dist/unimark/unimark-mac_universal unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+          mv unimark-desktop/dist/unimark/unimark-win_x64.exe unimark-desktop/dist/unimark/UniMark-Neutralino-Win64.exe
+          mv unimark-desktop/dist/unimark/unimark-linux_x64 unimark-desktop/dist/unimark/UniMark-Neutralino-Linux64
+
+      - name: Upload Neutralino release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.version }}
+          files: |
+            unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+            unimark-desktop/dist/unimark/UniMark-Neutralino-Win64.exe
+            unimark-desktop/dist/unimark/UniMark-Neutralino-Linux64

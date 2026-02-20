@@ -14,6 +14,20 @@ UniMark is a lightweight, dependency-free web component (`<unimark-editor>`) tha
 
 **[Latest Release](https://github.com/netsi1964/UniMark/releases/latest)**
 
+We offer **two different versions** of the Desktop app, depending on your needs.
+
+### 1. Neutralino.js Version (Ultra-Lightweight • Highly Recommended)
+This version brilliantly uses your operating system's built-in web viewer (WKWebView, WebView2, WebKitGTK). It delivers an **extremely small size (under 5 MB!)** with close-to-zero extra RAM usage.
+
+| Platform | File | Installation |
+|----------|------|--------------|
+| macOS | `UniMark-Neutralino-macOS` | Open Terminal, run `chmod +x` on the file, then execute |
+| Windows | `UniMark-Neutralino-Win64.exe` | Run the application |
+| Linux | `UniMark-Neutralino-Linux64` | `chmod +x` and run |
+
+### 2. Electron Version (Classic)
+This version includes a fully bundled Chromium browser. It offers maximum compatibility, but has a much larger file size (~160 MB).
+
 | Platform | File | Installation |
 |----------|------|--------------|
 | macOS | `.dmg` | Open, drag to Applications |
@@ -52,8 +66,8 @@ UniMark is a lightweight, dependency-free web component (`<unimark-editor>`) tha
 
 UniMark is built to be portable. You can use the single JavaScript file in any HTML project.
 
-### Build the Project
-To generate the distributable files:
+### Build the Web Component & Demo
+To generate the web distributable files:
 
 ```bash
 npm run build
@@ -62,6 +76,20 @@ npm run build
 This will create a `dist/` folder containing:
 -   `unimark-element.js`: The self-contained ES Module.
 -   `unimark.html`: A full-screen demo page.
+
+### Build the Desktop Apps
+
+To build the ultra-lightweight Neutralino app locally:
+```bash
+npm run neutralino:build
+```
+Output binaries will be located in `unimark-desktop/dist/unimark/`.
+
+To build the Electron app locally:
+```bash
+npm run electron:package
+```
+Output installers will be located in `release/`.
 
 ### Use on CodePen / Static Sites
 Simply import the script as a module:
