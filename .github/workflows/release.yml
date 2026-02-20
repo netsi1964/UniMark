@@ -98,7 +98,11 @@ jobs:
         run: npm ci
 
       - name: Build Neutralino app
-        run: npm run neutralino:build
+        run: |
+          cd unimark-desktop
+          npx @neutralinojs/neu update
+          cd ..
+          npm run neutralino:build
 
       - name: List output
         run: ls -la unimark-desktop/dist/unimark/
