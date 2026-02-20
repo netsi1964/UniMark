@@ -100,6 +100,9 @@ jobs:
       - name: Build Neutralino app
         run: npm run neutralino:build
 
+      - name: List output
+        run: ls -la unimark-desktop/dist/unimark/
+
       - name: Rename binaries for clarity
         run: |
           mv unimark-desktop/dist/unimark/unimark-mac_universal unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
