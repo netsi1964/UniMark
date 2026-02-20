@@ -81,7 +81,7 @@ jobs:
   # Job 3: Bygger Neutralino-app (ultra letvægt, bygger alle platforme fra Ubuntu)
   build-neutralino:
     needs: create-release
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     permissions:
       contents: write
 
