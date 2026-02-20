@@ -29,6 +29,7 @@ dist-ssr
 # Build outputs
 dist
 dist-electron
+release/
 
 # Temporary test/debug files
 test-*.cjs
