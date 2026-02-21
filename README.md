@@ -21,7 +21,7 @@ This version brilliantly uses your operating system's built-in web viewer (WKWeb
 
 | Platform | File | Installation |
 |----------|------|--------------|
-| macOS | `UniMark-Neutralino-macOS` | Open Terminal, run `chmod +x` on the file. If blocked by macOS Gatekeeper, run `xattr -d com.apple.quarantine UniMark-Neutralino-macOS`, then execute |
+| macOS | `UniMark-Neutralino-macOS.zip` | Unzip and run the `UniMark-Neutralino-macOS` app. If blocked by Gatekeeper, Control-click (or right click) -> Open. |
 | Windows | `UniMark-Neutralino-Win64.exe` | Run the application |
 | Linux | `UniMark-Neutralino-Linux64` | `chmod +x` and run |
 

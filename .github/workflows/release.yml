@@ -109,20 +109,24 @@ jobs:
 
       - name: Rename binaries for clarity
         run: |
-          mv unimark-desktop/dist/unimark/unimark-mac_universal unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+          mv unimark-desktop/dist/unimark/unimark-mac_universal.app unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app
           mv unimark-desktop/dist/unimark/unimark-win_x64.exe unimark-desktop/dist/unimark/UniMark-Neutralino-Win64.exe
           mv unimark-desktop/dist/unimark/unimark-linux_x64 unimark-desktop/dist/unimark/UniMark-Neutralino-Linux64
 
-      - name: Ad-hoc sign macOS binary to prevent SIGKILL
+      - name: Ad-hoc sign macOS app bundle to prevent SIGKILL
         run: |
-          chmod +x unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
-          codesign --force --sign - unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+          codesign --force --deep --sign - unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app
+
+      - name: Zip macOS app
+        run: |
+          cd unimark-desktop/dist/unimark/
+          zip -qr UniMark-Neutralino-macOS.zip UniMark-Neutralino-macOS.app
 
       - name: Upload Neutralino release assets
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ inputs.version }}
           files: |
-            unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+            unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.zip
             unimark-desktop/dist/unimark/UniMark-Neutralino-Win64.exe
             unimark-desktop/dist/unimark/UniMark-Neutralino-Linux64
