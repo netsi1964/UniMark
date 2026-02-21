@@ -21,9 +21,24 @@ This version brilliantly uses your operating system's built-in web viewer (WKWeb
 
 | Platform | File | Installation |
 |----------|------|--------------|
-| macOS | `UniMark-Neutralino-macOS.zip` | Unzip the app. Since this is an Open Source project without a $99/year Apple Certificate, macOS places it in Quarantine. Open your Terminal and run once: `xattr -cr /path/to/UniMark-Neutralino-macOS.app` (you can drag the app into the terminal to get the paths). Then open normally. |
+| macOS | `UniMark-Neutralino-macOS.zip` | Unzip the app. See the **macOS Installation Guide** below for one-time setup. |
 | Windows | `UniMark-Neutralino-Win64.exe` | Run the application |
 | Linux | `UniMark-Neutralino-Linux64` | `chmod +x` and run |
+
+#### 🍏 macOS Installation Guide (Important!)
+Because UniMark is a free Open-Source project, it does not use a paid Apple Developer Certificate ($99/year). As a result, macOS's security feature ("Gatekeeper") automatically places the downloaded app in "Quarantine" to protect you from unknown software, which prevents it from running.
+
+You only need to remove this quarantine **once** using a simple Terminal command:
+
+1. **Unzip** the downloaded `UniMark-Neutralino-macOS.zip` file so you see the `UniMark-Neutralino-macOS.app`.
+2. Open the **Terminal** app on your Mac (you can find it via Spotlight Search: `Cmd + Space` -> "Terminal").
+3. Type the following command, ending with a single space (do not press enter yet):
+   ```bash
+   xattr -cr 
+   ```
+4. **Drag and drop** the `UniMark-Neutralino-macOS.app` from Finder directly into the Terminal window. This will automatically paste the correct file path.
+5. Press **Enter**. (It won't show any success message, it just goes to the next line).
+6. You're done! You can now **double-click** the app in Finder to open it normally forever.
 
 ### 2. Electron Version (Classic)
 This version includes a fully bundled Chromium browser. It offers maximum compatibility, but has a much larger file size (~160 MB).
