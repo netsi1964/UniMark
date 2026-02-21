@@ -1,0 +1,238 @@
+build (ubuntu-latest)	Set up job	﻿2026-02-21T00:29:57.7168535Z Current runner version: '2.331.0'
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7193975Z ##[group]Runner Image Provisioner
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7194808Z Hosted Compute Agent
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7195346Z Version: 20260123.484
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7196003Z Commit: 6bd6555ca37d84114959e1c76d2c01448ff61c5d
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7196692Z Build Date: 2026-01-23T19:41:17Z
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7197296Z Worker ID: {a8618bf4-6bae-4be0-aa94-abcbf82d5355}
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7198080Z Azure Region: westcentralus
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7198610Z ##[endgroup]
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7199980Z ##[group]Operating System
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7200622Z Ubuntu
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7201275Z 24.04.3
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7201738Z LTS
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7202228Z ##[endgroup]
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7202795Z ##[group]Runner Image
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7203288Z Image: ubuntu-24.04
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7203819Z Version: 20260201.15.1
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7204777Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260201.15/images/ubuntu/Ubuntu2404-Readme.md
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7206415Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260201.15
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7207322Z ##[endgroup]
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7208355Z ##[group]GITHUB_TOKEN Permissions
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7210931Z Contents: write
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7212041Z Metadata: read
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7213003Z ##[endgroup]
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7215842Z Secret source: Actions
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7217112Z Prepare workflow directory
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7605047Z Prepare all required actions
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:57.7643113Z Getting action download info
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:58.1584904Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:58.2630365Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:58.3556058Z Download action repository 'softprops/action-gh-release@v2' (SHA:a06a81a03ee405af7f2048a818ed3f03bbf83c7b)
+build (ubuntu-latest)	Set up job	2026-02-21T00:29:59.0203783Z Complete job name: build (ubuntu-latest)
+build (ubuntu-latest)	Checkout repository	﻿2026-02-21T00:29:59.1030195Z ##[group]Run actions/checkout@v4
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1031759Z with:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1032512Z   repository: netsi1964/UniMark
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1033661Z   token: ***
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1034395Z   ssh-strict: true
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1035155Z   ssh-user: git
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1035926Z   persist-credentials: true
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1036786Z   clean: true
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1037558Z   sparse-checkout-cone-mode: true
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1038519Z   fetch-depth: 1
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1039264Z   fetch-tags: false
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1040065Z   show-progress: true
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1040841Z   lfs: false
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1041690Z   submodules: false
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1042479Z   set-safe-directory: true
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.1043607Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2123534Z Syncing repository: netsi1964/UniMark
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2126258Z ##[group]Getting Git version info
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2127563Z Working directory is '/home/runner/work/UniMark/UniMark'
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2129542Z [command]/usr/bin/git version
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2174568Z git version 2.52.0
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2200531Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2215389Z Temporarily overriding HOME='/home/runner/work/_temp/07b41154-014b-4ee8-a31c-68cf4ee0e22c' before making global git config changes
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2218840Z Adding repository directory to the temporary git global config as a safe directory
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2227771Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/UniMark/UniMark
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2266722Z Deleting the contents of '/home/runner/work/UniMark/UniMark'
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2269692Z ##[group]Initializing the repository
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2274213Z [command]/usr/bin/git init /home/runner/work/UniMark/UniMark
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2358898Z hint: Using 'master' as the name for the initial branch. This default branch name
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2361425Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2364479Z hint: to use in all of your new repositories, which will suppress this warning,
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2367060Z hint: call:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2368501Z hint:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2370104Z hint: 	git config --global init.defaultBranch <name>
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2372345Z hint:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2374221Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2377437Z hint: 'development'. The just-created branch can be renamed via this command:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2379899Z hint:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2381270Z hint: 	git branch -m <name>
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2382685Z hint:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2383976Z hint: Disable this message with "git config set advice.defaultBranchName false"
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2385925Z Initialized empty Git repository in /home/runner/work/UniMark/UniMark/.git/
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2390307Z [command]/usr/bin/git remote add origin https://github.com/netsi1964/UniMark
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2414086Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2416520Z ##[group]Disabling automatic garbage collection
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2418793Z [command]/usr/bin/git config --local gc.auto 0
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2448205Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2450454Z ##[group]Setting up auth
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2455889Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2489009Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2805575Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.2836308Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.3054937Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.3084894Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.3315510Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.3349653Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.3351416Z ##[group]Fetching the repository
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.3358937Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f48e5a3be9e8f1ebd1c772c43691111f8fc7eb57:refs/remotes/origin/main
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8788780Z From https://github.com/netsi1964/UniMark
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8818532Z  * [new ref]         f48e5a3be9e8f1ebd1c772c43691111f8fc7eb57 -> origin/main
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8822488Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8824243Z ##[group]Determining the checkout info
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8825719Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8828671Z [command]/usr/bin/git sparse-checkout disable
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8870445Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8897319Z ##[group]Checking out the ref
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.8901386Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.9065724Z Switched to a new branch 'main'
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.9068559Z branch 'main' set up to track 'origin/main'.
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.9076567Z ##[endgroup]
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.9109795Z [command]/usr/bin/git log -1 --format=%H
+build (ubuntu-latest)	Checkout repository	2026-02-21T00:29:59.9131739Z f48e5a3be9e8f1ebd1c772c43691111f8fc7eb57
+build (ubuntu-latest)	Setup Node	﻿2026-02-21T00:29:59.9515583Z ##[group]Run actions/setup-node@v4
+build (ubuntu-latest)	Setup Node	2026-02-21T00:29:59.9516512Z with:
+build (ubuntu-latest)	Setup Node	2026-02-21T00:29:59.9517160Z   node-version: 22
+build (ubuntu-latest)	Setup Node	2026-02-21T00:29:59.9517864Z   always-auth: false
+build (ubuntu-latest)	Setup Node	2026-02-21T00:29:59.9518621Z   check-latest: false
+build (ubuntu-latest)	Setup Node	2026-02-21T00:29:59.9519580Z   token: ***
+build (ubuntu-latest)	Setup Node	2026-02-21T00:29:59.9520246Z ##[endgroup]
+build (ubuntu-latest)	Setup Node	2026-02-21T00:30:00.1423874Z Found in cache @ /opt/hostedtoolcache/node/22.22.0/x64
+build (ubuntu-latest)	Setup Node	2026-02-21T00:30:00.1431712Z ##[group]Environment details
+build (ubuntu-latest)	Setup Node	2026-02-21T00:30:00.5078995Z node: v22.22.0
+build (ubuntu-latest)	Setup Node	2026-02-21T00:30:00.5080227Z npm: 10.9.4
+build (ubuntu-latest)	Setup Node	2026-02-21T00:30:00.5081568Z yarn: 1.22.22
+build (ubuntu-latest)	Setup Node	2026-02-21T00:30:00.5083565Z ##[endgroup]
+build (ubuntu-latest)	Install dependencies	﻿2026-02-21T00:30:00.5212670Z ##[group]Run npm ci
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:00.5213482Z [36;1mnpm ci[0m
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:00.5257083Z shell: /usr/bin/bash -e {0}
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:00.5257904Z ##[endgroup]
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:02.2279057Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:02.5710532Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:02.6098589Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:03.2355023Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3022012Z 
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3022826Z added 376 packages, and audited 377 packages in 10s
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3023304Z 
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3023766Z 70 packages are looking for funding
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3026106Z   run `npm fund` for details
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3300864Z 
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3301886Z 22 vulnerabilities (1 moderate, 21 high)
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3302287Z 
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3302771Z To address issues that do not require attention, run:
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3303325Z   npm audit fix
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3303543Z 
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3303986Z To address all issues (including breaking changes), run:
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3304588Z   npm audit fix --force
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3304856Z 
+build (ubuntu-latest)	Install dependencies	2026-02-21T00:30:10.3305084Z Run `npm audit` for details.
+build (ubuntu-latest)	Build web component	﻿2026-02-21T00:30:10.3992327Z ##[group]Run npm run build
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.3992725Z [36;1mnpm run build[0m
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.4024358Z shell: /usr/bin/bash -e {0}
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.4024607Z ##[endgroup]
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.4969373Z 
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.4969829Z > unimark-app@0.1.12 build
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.4970432Z > vite build && cp unimark.html dist/
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.4970683Z 
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.6862235Z [36mvite v6.4.1 [32mbuilding for production...[36m[39m
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.7304613Z transforming...
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.8142636Z [32m✓[39m 5 modules transformed.
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.8362232Z rendering chunks...
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.8386931Z computing gzip size...
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.8413417Z [2mdist/[22m[36munimark-element.js  [39m[1m[2m24.98 kB[22m[1m[22m[2m │ gzip: 9.49 kB[22m
+build (ubuntu-latest)	Build web component	2026-02-21T00:30:10.8414443Z [32m✓ built in 131ms[39m
+build (ubuntu-latest)	Build Electron app	﻿2026-02-21T00:30:10.8628366Z ##[group]Run npm run electron:build
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.8628688Z [36;1mnpm run electron:build[0m
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.8660849Z shell: /usr/bin/bash -e {0}
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.8661310Z ##[endgroup]
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.9586753Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.9587374Z > unimark-app@0.1.12 electron:build
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.9587794Z > node build-electron.mjs
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:10.9588022Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0037924Z 🔨 Building Electron app with esbuild...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0038219Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0044666Z 📦 Bundling main process...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0148554Z ✅ Main process bundled
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0148903Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0149241Z 📦 Bundling preload script...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0167934Z ✅ Preload script bundled
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0168709Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0169442Z 📦 Bundling renderer script...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0209974Z ✅ Renderer script bundled
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0210582Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0211682Z 📄 Copying renderer.html...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0215090Z ✅ HTML copied
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0216128Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0216908Z 📦 Copying unimark-element.js...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0219780Z ✅ Web component copied
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0220617Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0221493Z 📝 Creating package.json...
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0229316Z ✅ package.json created
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0229645Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0230074Z 🎉 Build complete! Output in dist-electron/
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0230812Z 
+build (ubuntu-latest)	Build Electron app	2026-02-21T00:30:11.0231291Z Run with: npm run electron:dev
+build (ubuntu-latest)	Package Electron app	﻿2026-02-21T00:30:11.0363824Z ##[group]Run npx electron-builder --publish never
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:11.0364231Z [36;1mnpx electron-builder --publish never[0m
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:11.0396937Z shell: /usr/bin/bash -e {0}
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:11.0397188Z ##[endgroup]
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:11.7818921Z   • electron-builder  version=26.7.0 os=6.11.0-1018-azure
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:11.7860109Z   • loaded configuration  file=package.json ("build" field)
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:12.0374129Z   • executing @electron/rebuild  electronVersion=40.1.0 arch=x64 buildFromSource=false workspaceRoot=/home/runner/work/UniMark/UniMark projectDir=./ appDir=./
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:12.0377190Z   • installing native dependencies  arch=x64
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:12.2294035Z   • completed installing native dependencies
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:12.2340251Z   • packaging       platform=linux arch=x64 electron=40.1.0 appOutDir=release/linux-unpacked
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:12.4030396Z   • downloading     url=https://github.com/electron/electron/releases/download/v40.1.0/electron-v40.1.0-linux-x64.zip size=115 MB parts=8
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:12.7517491Z   • downloaded      url=https://github.com/electron/electron/releases/download/v40.1.0/electron-v40.1.0-linux-x64.zip duration=510ms
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:14.4708159Z   • searching for node modules  pm=npm searchDir=/home/runner/work/UniMark/UniMark
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:14.9650473Z   • searching for node modules  pm=traversal searchDir=/home/runner/work/UniMark/UniMark
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:14.9651970Z   • using manual traversal of node_modules to build dependency tree
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:14.9664109Z   • no node modules returned while searching directories  searchDirectories=[""]
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:14.9946845Z   • building        target=AppImage arch=x64 file=release/UniMark-linux-x86_64.AppImage
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:15.3094032Z   • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/appimage-12.0.1/appimage-12.0.1.7z size=1.6 MB parts=1
+build (ubuntu-latest)	Package Electron app	2026-02-21T00:30:15.4603481Z   • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/appimage-12.0.1/appimage-12.0.1.7z duration=449ms
+build (ubuntu-latest)	Upload release assets	﻿2026-02-21T00:30:23.4946166Z ##[group]Run softprops/action-gh-release@v2
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.4946479Z with:
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.4946658Z   tag_name: v0.1.12
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.4946902Z   files: release/*.dmg
+build (ubuntu-latest)	Upload release assets	release/*.exe
+build (ubuntu-latest)	Upload release assets	release/*.AppImage
+build (ubuntu-latest)	Upload release assets	
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.4947206Z   overwrite_files: true
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.4947529Z   token: ***
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.4947711Z ##[endgroup]
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.5927763Z 🤔 Pattern 'release/*.dmg' does not match any files.
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.5931700Z 🤔 Pattern 'release/*.exe' does not match any files.
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:23.9557132Z Found release UniMark v0.1.12 (with id=288925712)
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:24.2132190Z ⬆️ Uploading UniMark-linux-x86_64.AppImage...
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:29.3006747Z ✅ Uploaded UniMark-linux-x86_64.AppImage
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:29.3016946Z Finalizing release...
+build (ubuntu-latest)	Upload release assets	2026-02-21T00:30:29.6531787Z 🎉 Release ready at https://github.com/netsi1964/UniMark/releases/tag/v0.1.12
+build (ubuntu-latest)	Post Setup Node	﻿2026-02-21T00:30:29.6649521Z Post job cleanup.
+build (ubuntu-latest)	Post Checkout repository	﻿2026-02-21T00:30:29.8284603Z Post job cleanup.
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9213898Z [command]/usr/bin/git version
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9249228Z git version 2.52.0
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9291749Z Temporarily overriding HOME='/home/runner/work/_temp/56b9cdfd-5152-4d49-a9d2-d1f02af86629' before making global git config changes
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9292826Z Adding repository directory to the temporary git global config as a safe directory
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9297180Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/UniMark/UniMark
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9331510Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9364229Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9588057Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9607791Z http.https://github.com/.extraheader
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9620221Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9650969Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9867374Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+build (ubuntu-latest)	Post Checkout repository	2026-02-21T00:30:29.9897876Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+build (ubuntu-latest)	Complete job	﻿2026-02-21T00:30:30.0220089Z Cleaning up orphan processes

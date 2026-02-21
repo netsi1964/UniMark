@@ -1,0 +1,235 @@
+build (windows-latest)	Set up job	﻿2026-02-21T00:29:59.6956832Z Current runner version: '2.331.0'
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7232553Z ##[group]Runner Image Provisioner
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7233366Z Hosted Compute Agent
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7233912Z Version: 20260213.493
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7234443Z Commit: 5c115507f6dd24b8de37d8bbe0bb4509d0cc0fa3
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7235093Z Build Date: 2026-02-13T00:28:41Z
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7235687Z Worker ID: {e9a4e902-0599-4d92-803c-fba580635f7d}
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7236332Z Azure Region: eastus
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7236792Z ##[endgroup]
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7238080Z ##[group]Operating System
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7238722Z Microsoft Windows Server 2025
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7239206Z 10.0.26100
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7239684Z Datacenter
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7240087Z ##[endgroup]
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7240529Z ##[group]Runner Image
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7241003Z Image: windows-2025
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7241466Z Version: 20260217.31.1
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7242374Z Included Software: https://github.com/actions/runner-images/blob/win25/20260217.31/images/windows/Windows2025-Readme.md
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7244206Z Image Release: https://github.com/actions/runner-images/releases/tag/win25%2F20260217.31
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7245037Z ##[endgroup]
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7246014Z ##[group]GITHUB_TOKEN Permissions
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7247745Z Contents: write
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7248287Z Metadata: read
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7248705Z ##[endgroup]
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7250872Z Secret source: Actions
+build (windows-latest)	Set up job	2026-02-21T00:29:59.7252032Z Prepare workflow directory
+build (windows-latest)	Set up job	2026-02-21T00:29:59.8206943Z Prepare all required actions
+build (windows-latest)	Set up job	2026-02-21T00:29:59.8246278Z Getting action download info
+build (windows-latest)	Set up job	2026-02-21T00:30:00.0612764Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+build (windows-latest)	Set up job	2026-02-21T00:30:00.2650386Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+build (windows-latest)	Set up job	2026-02-21T00:30:00.5018754Z Download action repository 'softprops/action-gh-release@v2' (SHA:a06a81a03ee405af7f2048a818ed3f03bbf83c7b)
+build (windows-latest)	Set up job	2026-02-21T00:30:01.2060179Z Complete job name: build (windows-latest)
+build (windows-latest)	Checkout repository	﻿2026-02-21T00:30:01.8556079Z ##[group]Run actions/checkout@v4
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8557097Z with:
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8557480Z   repository: netsi1964/UniMark
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8558230Z   token: ***
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8558589Z   ssh-strict: true
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8558947Z   ssh-user: git
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8559302Z   persist-credentials: true
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8559714Z   clean: true
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8560097Z   sparse-checkout-cone-mode: true
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8560542Z   fetch-depth: 1
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8560896Z   fetch-tags: false
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8561255Z   show-progress: true
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8561626Z   lfs: false
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8561986Z   submodules: false
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8562366Z   set-safe-directory: true
+build (windows-latest)	Checkout repository	2026-02-21T00:30:01.8562994Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.0648187Z Syncing repository: netsi1964/UniMark
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.0649972Z ##[group]Getting Git version info
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.0650590Z Working directory is 'D:\a\UniMark\UniMark'
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.1751312Z [command]"C:\Program Files\Git\bin\git.exe" version
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5209928Z git version 2.53.0.windows.1
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5273437Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5315034Z Temporarily overriding HOME='D:\a\_temp\54ae0be2-36e6-4727-9e02-5c78dfc7a36a' before making global git config changes
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5316820Z Adding repository directory to the temporary git global config as a safe directory
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5318340Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\UniMark\UniMark
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5825234Z Deleting the contents of 'D:\a\UniMark\UniMark'
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5832575Z ##[group]Initializing the repository
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.5843463Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\UniMark\UniMark
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.6997467Z Initialized empty Git repository in D:/a/UniMark/UniMark/.git/
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7049095Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/netsi1964/UniMark
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7564816Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7566219Z ##[group]Disabling automatic garbage collection
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7567613Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7873561Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7874834Z ##[group]Setting up auth
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.7893456Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+build (windows-latest)	Checkout repository	2026-02-21T00:30:02.8211797Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+build (windows-latest)	Checkout repository	2026-02-21T00:30:04.1908519Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (windows-latest)	Checkout repository	2026-02-21T00:30:04.2208195Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+build (windows-latest)	Checkout repository	2026-02-21T00:30:04.8017243Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+build (windows-latest)	Checkout repository	2026-02-21T00:30:04.8371725Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+build (windows-latest)	Checkout repository	2026-02-21T00:30:05.3816467Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+build (windows-latest)	Checkout repository	2026-02-21T00:30:05.4128665Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:05.4129487Z ##[group]Fetching the repository
+build (windows-latest)	Checkout repository	2026-02-21T00:30:05.4143866Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f48e5a3be9e8f1ebd1c772c43691111f8fc7eb57:refs/remotes/origin/main
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3023065Z From https://github.com/netsi1964/UniMark
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3441712Z  * [new ref]         f48e5a3be9e8f1ebd1c772c43691111f8fc7eb57 -> origin/main
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3504132Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3504519Z ##[group]Determining the checkout info
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3504870Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3505198Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.3852939Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.4188533Z ##[group]Checking out the ref
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.4189503Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B main refs/remotes/origin/main
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.4959408Z Switched to a new branch 'main'
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.4980956Z branch 'main' set up to track 'origin/main'.
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.5034519Z ##[endgroup]
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.5356921Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+build (windows-latest)	Checkout repository	2026-02-21T00:30:06.5634401Z f48e5a3be9e8f1ebd1c772c43691111f8fc7eb57
+build (windows-latest)	Setup Node	﻿2026-02-21T00:30:06.9005470Z ##[group]Run actions/setup-node@v4
+build (windows-latest)	Setup Node	2026-02-21T00:30:06.9005855Z with:
+build (windows-latest)	Setup Node	2026-02-21T00:30:06.9006071Z   node-version: 22
+build (windows-latest)	Setup Node	2026-02-21T00:30:06.9006292Z   always-auth: false
+build (windows-latest)	Setup Node	2026-02-21T00:30:06.9006507Z   check-latest: false
+build (windows-latest)	Setup Node	2026-02-21T00:30:06.9007008Z   token: ***
+build (windows-latest)	Setup Node	2026-02-21T00:30:06.9007193Z ##[endgroup]
+build (windows-latest)	Setup Node	2026-02-21T00:30:07.1838651Z Found in cache @ C:\hostedtoolcache\windows\node\22.22.0\x64
+build (windows-latest)	Setup Node	2026-02-21T00:30:07.1854880Z ##[group]Environment details
+build (windows-latest)	Setup Node	2026-02-21T00:30:11.7211755Z node: v22.22.0
+build (windows-latest)	Setup Node	2026-02-21T00:30:11.7212113Z npm: 10.9.4
+build (windows-latest)	Setup Node	2026-02-21T00:30:11.7212360Z yarn: 1.22.22
+build (windows-latest)	Setup Node	2026-02-21T00:30:11.7214350Z ##[endgroup]
+build (windows-latest)	Install dependencies	﻿2026-02-21T00:30:11.7507928Z ##[group]Run npm ci
+build (windows-latest)	Install dependencies	2026-02-21T00:30:11.7508214Z [36;1mnpm ci[0m
+build (windows-latest)	Install dependencies	2026-02-21T00:30:11.8174335Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+build (windows-latest)	Install dependencies	2026-02-21T00:30:11.8174795Z ##[endgroup]
+build (windows-latest)	Install dependencies	2026-02-21T00:30:21.8916760Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+build (windows-latest)	Install dependencies	2026-02-21T00:30:22.0911631Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+build (windows-latest)	Install dependencies	2026-02-21T00:30:22.5274460Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+build (windows-latest)	Install dependencies	2026-02-21T00:30:23.3471710Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3300498Z 
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3301705Z added 376 packages, and audited 377 packages in 19s
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3302497Z 
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3303427Z 70 packages are looking for funding
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3304075Z   run `npm fund` for details
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3597684Z 
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3598608Z 22 vulnerabilities (1 moderate, 21 high)
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3604689Z 
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3605385Z To address issues that do not require attention, run:
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3608765Z   npm audit fix
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3609152Z 
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3609680Z To address all issues (including breaking changes), run:
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3617187Z   npm audit fix --force
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3617656Z 
+build (windows-latest)	Install dependencies	2026-02-21T00:30:36.3618015Z Run `npm audit` for details.
+build (windows-latest)	Build web component	﻿2026-02-21T00:30:38.2479838Z ##[group]Run npm run build
+build (windows-latest)	Build web component	2026-02-21T00:30:38.2480163Z [36;1mnpm run build[0m
+build (windows-latest)	Build web component	2026-02-21T00:30:38.2557576Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+build (windows-latest)	Build web component	2026-02-21T00:30:38.2557914Z ##[endgroup]
+build (windows-latest)	Build web component	2026-02-21T00:30:39.0085160Z 
+build (windows-latest)	Build web component	2026-02-21T00:30:39.0086112Z > unimark-app@0.1.12 build
+build (windows-latest)	Build web component	2026-02-21T00:30:39.0086582Z > vite build && cp unimark.html dist/
+build (windows-latest)	Build web component	2026-02-21T00:30:39.0086853Z 
+build (windows-latest)	Build web component	2026-02-21T00:30:39.5672808Z [36mvite v6.4.1 [32mbuilding for production...[36m[39m
+build (windows-latest)	Build web component	2026-02-21T00:30:39.6297535Z transforming...
+build (windows-latest)	Build web component	2026-02-21T00:30:39.7393985Z [32m✓[39m 5 modules transformed.
+build (windows-latest)	Build web component	2026-02-21T00:30:39.7857539Z rendering chunks...
+build (windows-latest)	Build web component	2026-02-21T00:30:39.7903225Z computing gzip size...
+build (windows-latest)	Build web component	2026-02-21T00:30:39.7934898Z [2mdist/[22m[36munimark-element.js  [39m[1m[2m24.98 kB[22m[1m[22m[2m │ gzip: 9.49 kB[22m
+build (windows-latest)	Build web component	2026-02-21T00:30:39.7936969Z [32m✓ built in 192ms[39m
+build (windows-latest)	Build Electron app	﻿2026-02-21T00:30:39.9887462Z ##[group]Run npm run electron:build
+build (windows-latest)	Build Electron app	2026-02-21T00:30:39.9887806Z [36;1mnpm run electron:build[0m
+build (windows-latest)	Build Electron app	2026-02-21T00:30:39.9973158Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+build (windows-latest)	Build Electron app	2026-02-21T00:30:39.9973870Z ##[endgroup]
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.7557385Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.7558096Z > unimark-app@0.1.12 electron:build
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.7558711Z > node build-electron.mjs
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.7558952Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8488988Z 🔨 Building Electron app with esbuild...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8489434Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8504904Z 📦 Bundling main process...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8726896Z ✅ Main process bundled
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8727167Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8727515Z 📦 Bundling preload script...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8767393Z ✅ Preload script bundled
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8767948Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8769631Z 📦 Bundling renderer script...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8810157Z ✅ Renderer script bundled
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8810425Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8810959Z 📄 Copying renderer.html...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8828116Z ✅ HTML copied
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8828532Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8831202Z 📦 Copying unimark-element.js...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8836524Z ✅ Web component copied
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8836740Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8837164Z 📝 Creating package.json...
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8848954Z ✅ package.json created
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8849181Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8849718Z 🎉 Build complete! Output in dist-electron/
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8849959Z 
+build (windows-latest)	Build Electron app	2026-02-21T00:30:40.8850106Z Run with: npm run electron:dev
+build (windows-latest)	Package Electron app	﻿2026-02-21T00:30:40.9777172Z ##[group]Run npx electron-builder --publish never
+build (windows-latest)	Package Electron app	2026-02-21T00:30:40.9777587Z [36;1mnpx electron-builder --publish never[0m
+build (windows-latest)	Package Electron app	2026-02-21T00:30:40.9842813Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+build (windows-latest)	Package Electron app	2026-02-21T00:30:40.9843328Z ##[endgroup]
+build (windows-latest)	Package Electron app	2026-02-21T00:30:42.8396172Z   • electron-builder  version=26.7.0 os=10.0.26100
+build (windows-latest)	Package Electron app	2026-02-21T00:30:42.8449446Z   • loaded configuration  file=package.json ("build" field)
+build (windows-latest)	Package Electron app	2026-02-21T00:30:43.3077837Z   • executing @electron/rebuild  electronVersion=40.1.0 arch=x64 buildFromSource=false workspaceRoot=D:\a\UniMark\UniMark projectDir=./ appDir=./
+build (windows-latest)	Package Electron app	2026-02-21T00:30:43.3081441Z   • installing native dependencies  arch=x64
+build (windows-latest)	Package Electron app	2026-02-21T00:30:43.6828243Z   • completed installing native dependencies
+build (windows-latest)	Package Electron app	2026-02-21T00:30:43.6893932Z   • packaging       platform=win32 arch=x64 electron=40.1.0 appOutDir=release\win-unpacked
+build (windows-latest)	Package Electron app	2026-02-21T00:30:43.8146987Z   • downloading     url=https://github.com/electron/electron/releases/download/v40.1.0/electron-v40.1.0-win32-x64.zip size=138 MB parts=8
+build (windows-latest)	Package Electron app	2026-02-21T00:30:44.0554502Z   • downloaded      url=https://github.com/electron/electron/releases/download/v40.1.0/electron-v40.1.0-win32-x64.zip duration=343ms
+build (windows-latest)	Package Electron app	2026-02-21T00:30:46.0564862Z   • searching for node modules  pm=npm searchDir=D:\a\UniMark\UniMark
+build (windows-latest)	Package Electron app	2026-02-21T00:30:46.9868343Z   • searching for node modules  pm=traversal searchDir=D:\a\UniMark\UniMark
+build (windows-latest)	Package Electron app	2026-02-21T00:30:46.9870029Z   • using manual traversal of node_modules to build dependency tree
+build (windows-latest)	Package Electron app	2026-02-21T00:30:46.9885816Z   • no node modules returned while searching directories  searchDirectories=[""]
+build (windows-latest)	Package Electron app	2026-02-21T00:30:47.2798674Z   • updating asar integrity executable resource  executablePath=release\win-unpacked\UniMark.exe
+build (windows-latest)	Package Electron app	2026-02-21T00:30:47.5003708Z   • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z size=5.6 MB parts=1
+build (windows-latest)	Package Electron app	2026-02-21T00:30:47.5649446Z   • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/winCodeSign-2.6.0/winCodeSign-2.6.0.7z duration=218ms
+build (windows-latest)	Package Electron app	2026-02-21T00:30:48.2880180Z   • signing with signtool.exe  path=release\win-unpacked\UniMark.exe
+build (windows-latest)	Package Electron app	2026-02-21T00:30:48.2902182Z   • building        target=nsis file=release\UniMark-win-x64.exe archs=x64 oneClick=true perMachine=false
+build (windows-latest)	Package Electron app	2026-02-21T00:30:48.4428805Z   • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z size=1.3 MB parts=1
+build (windows-latest)	Package Electron app	2026-02-21T00:30:48.4727141Z   • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-3.0.4.1/nsis-3.0.4.1.7z duration=165ms
+build (windows-latest)	Package Electron app	2026-02-21T00:30:48.8722643Z   • signing with signtool.exe  path=release\win-unpacked\resources\elevate.exe
+build (windows-latest)	Package Electron app	2026-02-21T00:31:21.2439319Z   • downloading     url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z size=731 kB parts=1
+build (windows-latest)	Package Electron app	2026-02-21T00:31:21.2680564Z   • downloaded      url=https://github.com/electron-userland/electron-builder-binaries/releases/download/nsis-resources-3.4.1/nsis-resources-3.4.1.7z duration=185ms
+build (windows-latest)	Package Electron app	2026-02-21T00:31:22.4172477Z   • signing with signtool.exe  path=release\UniMark-win-x64.__uninstaller.exe
+build (windows-latest)	Package Electron app	2026-02-21T00:31:23.5075294Z   • signing with signtool.exe  path=release\UniMark-win-x64.exe
+build (windows-latest)	Package Electron app	2026-02-21T00:31:23.5079353Z   • building block map  blockMapFile=release\UniMark-win-x64.exe.blockmap
+build (windows-latest)	Upload release assets	﻿2026-02-21T00:31:24.3726745Z ##[group]Run softprops/action-gh-release@v2
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.3727098Z with:
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.3727256Z   tag_name: v0.1.12
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.3727523Z   files: release/*.dmg
+build (windows-latest)	Upload release assets	release/*.exe
+build (windows-latest)	Upload release assets	release/*.AppImage
+build (windows-latest)	Upload release assets	
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.3727815Z   overwrite_files: true
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.3728111Z   token: ***
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.3728275Z ##[endgroup]
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.5135720Z 🤔 Pattern 'release/*.dmg' does not match any files.
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.5143880Z 🤔 Pattern 'release/*.AppImage' does not match any files.
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.7708249Z Found release UniMark v0.1.12 (with id=288925712)
+build (windows-latest)	Upload release assets	2026-02-21T00:31:24.9931829Z ⬆️ Uploading UniMark-win-x64.exe...
+build (windows-latest)	Upload release assets	2026-02-21T00:31:27.8759923Z ✅ Uploaded UniMark-win-x64.exe
+build (windows-latest)	Upload release assets	2026-02-21T00:31:27.8776183Z Finalizing release...
+build (windows-latest)	Upload release assets	2026-02-21T00:31:28.0967571Z 🎉 Release ready at https://github.com/netsi1964/UniMark/releases/tag/v0.1.12
+build (windows-latest)	Post Setup Node	﻿2026-02-21T00:31:28.1253151Z Post job cleanup.
+build (windows-latest)	Post Checkout repository	﻿2026-02-21T00:31:28.3570629Z Post job cleanup.
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.5904477Z [command]"C:\Program Files\Git\bin\git.exe" version
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.6184311Z git version 2.53.0.windows.1
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.6260920Z Temporarily overriding HOME='D:\a\_temp\6dd1673a-1da5-40d2-adbf-0358d6f2cabd' before making global git config changes
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.6261723Z Adding repository directory to the temporary git global config as a safe directory
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.6272266Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\UniMark\UniMark
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.6577063Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:28.6883240Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:29.2215793Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:29.2478370Z http.https://github.com/.extraheader
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:29.2528008Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:29.2842665Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:29.8037962Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+build (windows-latest)	Post Checkout repository	2026-02-21T00:31:29.8374553Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+build (windows-latest)	Complete job	﻿2026-02-21T00:31:30.3948898Z Cleaning up orphan processes

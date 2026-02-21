@@ -21,7 +21,7 @@ This version brilliantly uses your operating system's built-in web viewer (WKWeb
 
 | Platform | File | Installation |
 |----------|------|--------------|
-| macOS | `UniMark-Neutralino-macOS.zip` | Unzip and run the `UniMark-Neutralino-macOS` app. If blocked by Gatekeeper, Control-click (or right click) -> Open. |
+| macOS | `UniMark-Neutralino-macOS.zip` | Unzip the app. Since this is an Open Source project without a $99/year Apple Certificate, macOS places it in Quarantine. Open your Terminal and run once: `xattr -cr /path/to/UniMark-Neutralino-macOS.app` (you can drag the app into the terminal to get the paths). Then open normally. |
 | Windows | `UniMark-Neutralino-Win64.exe` | Run the application |
 | Linux | `UniMark-Neutralino-Linux64` | `chmod +x` and run |
 

@@ -1,14 +1,22 @@
 // This file just initializes Neutralino and sets up the window tray/close behavior.
 // The actual UniMark editor is a web component loaded in index.html.
 
-function onTrayMenuItemClicked(event) {
-    if (event.detail.id === "QUIT") {
+function quitApp() {
+    if (NL_OS === 'Darwin') {
+        Neutralino.os.execCommand('kill -15 ' + NL_PID);
+    } else {
         Neutralino.app.exit();
     }
 }
 
+function onTrayMenuItemClicked(event) {
+    if (event.detail.id === "QUIT") {
+        quitApp();
+    }
+}
+
 function onWindowClose() {
-    Neutralino.app.exit();
+    quitApp();
 }
 
 function setTray() {
@@ -63,7 +71,7 @@ document.addEventListener('keydown', (e) => {
                 e.preventDefault();
                 break;
             case 'q':
-                Neutralino.app.exit();
+                quitApp();
                 e.preventDefault();
                 break;
         }

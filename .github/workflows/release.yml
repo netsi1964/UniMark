@@ -148,7 +148,7 @@ jobs:
       - name: Zip macOS app
         run: |
           cd unimark-desktop/dist/unimark/
-          zip -qr UniMark-Neutralino-macOS.zip UniMark-Neutralino-macOS.app
+          ditto -c -k --keepParent UniMark-Neutralino-macOS.app UniMark-Neutralino-macOS.zip
 
       - name: Upload Neutralino release assets
         uses: softprops/action-gh-release@v2
