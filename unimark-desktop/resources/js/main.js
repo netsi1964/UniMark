@@ -40,12 +40,15 @@ document.addEventListener('keydown', (e) => {
         switch (e.key.toLowerCase()) {
             case 'c':
                 document.execCommand('copy');
+                e.preventDefault();
                 break;
             case 'v':
                 document.execCommand('paste');
+                e.preventDefault();
                 break;
             case 'x':
                 document.execCommand('cut');
+                e.preventDefault();
                 break;
             case 'a':
                 document.execCommand('selectAll');
@@ -57,6 +60,10 @@ document.addEventListener('keydown', (e) => {
                 } else {
                     document.execCommand('undo');
                 }
+                e.preventDefault();
+                break;
+            case 'q':
+                Neutralino.app.exit();
                 e.preventDefault();
                 break;
         }

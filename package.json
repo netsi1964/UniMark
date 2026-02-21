@@ -4,7 +4,7 @@
   "description": "Unicode Markdown Converter - Desktop app",
   "author": "Sten Hougaard",
   "private": true,
-  "version": "0.1.12",
+  "version": "0.1.13",
   "type": "module",
   "scripts": {
     "dev": "vite",

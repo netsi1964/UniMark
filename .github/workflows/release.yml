@@ -113,6 +113,10 @@ jobs:
           mkdir -p unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/MacOS
           mv unimark-desktop/dist/unimark/unimark-mac_universal.app unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/MacOS/UniMark-Neutralino-macOS
           chmod +x unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/MacOS/UniMark-Neutralino-macOS
+
+          mkdir -p unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/Resources
+          cp unimark-desktop/resources/icons/appIcon.icns unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/Resources/icon.icns
+
           cat <<EOF > unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/Info.plist
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -120,6 +124,8 @@ jobs:
           <dict>
             <key>CFBundleExecutable</key>
             <string>UniMark-Neutralino-macOS</string>
+            <key>CFBundleIconFile</key>
+            <string>icon.icns</string>
             <key>CFBundleIdentifier</key>
             <string>com.stenhougaard.unimark</string>
             <key>CFBundleName</key>
