@@ -113,6 +113,11 @@ jobs:
           mv unimark-desktop/dist/unimark/unimark-win_x64.exe unimark-desktop/dist/unimark/UniMark-Neutralino-Win64.exe
           mv unimark-desktop/dist/unimark/unimark-linux_x64 unimark-desktop/dist/unimark/UniMark-Neutralino-Linux64
 
+      - name: Ad-hoc sign macOS binary to prevent SIGKILL
+        run: |
+          chmod +x unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+          codesign --force --sign - unimark-desktop/dist/unimark/UniMark-Neutralino-macOS
+
       - name: Upload Neutralino release assets
         uses: softprops/action-gh-release@v2
         with:
