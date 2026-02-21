@@ -107,9 +107,31 @@ jobs:
       - name: List output
         run: ls -la unimark-desktop/dist/unimark/
 
-      - name: Rename binaries for clarity
+      - name: Rename and structure binaries for clarity
         run: |
-          mv unimark-desktop/dist/unimark/unimark-mac_universal.app unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app
+          # Manually create the macOS .app bundle structure (because Neutralino's --macos-bundle is bugged)
+          mkdir -p unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/MacOS
+          mv unimark-desktop/dist/unimark/unimark-mac_universal.app unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/MacOS/UniMark-Neutralino-macOS
+          chmod +x unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/MacOS/UniMark-Neutralino-macOS
+          cat <<EOF > unimark-desktop/dist/unimark/UniMark-Neutralino-macOS.app/Contents/Info.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>CFBundleExecutable</key>
+            <string>UniMark-Neutralino-macOS</string>
+            <key>CFBundleIdentifier</key>
+            <string>com.stenhougaard.unimark</string>
+            <key>CFBundleName</key>
+            <string>UniMark</string>
+            <key>CFBundleShortVersionString</key>
+            <string>1.0.0</string>
+            <key>NSHighResolutionCapable</key>
+            <true/>
+          </dict>
+          </plist>
+          EOF
+
           mv unimark-desktop/dist/unimark/unimark-win_x64.exe unimark-desktop/dist/unimark/UniMark-Neutralino-Win64.exe
           mv unimark-desktop/dist/unimark/unimark-linux_x64 unimark-desktop/dist/unimark/UniMark-Neutralino-Linux64
 
