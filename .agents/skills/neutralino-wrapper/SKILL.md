@@ -1,6 +1,6 @@
 ---
-name: Neutralino Web App Wrapper
-description: Converts an existing web application into a lightweight native desktop app using Neutralino.js, with built-in macOS crash prevention and automated CI/CD.
+name: neutralino-wrapper
+description: Wraps an existing web application (HTML/JS/CSS or dist folder) into a lightweight native desktop app using Neutralino.js, with macOS crash prevention and automated GitHub Actions CI/CD. Use when the user wants to package a web app as a desktop app, create a Neutralino.js wrapper, ship a cross-platform desktop build, or bundle a frontend as a standalone executable.
 ---
 
 # Neutralino Web App Wrapper Skill
@@ -47,8 +47,18 @@ Update the project's README.md with the contents of `templates/README_MAC_INSTRU
 ***
 
 ## 🧩 TEMPLATES
-Use the files in the `templates/` directory to construct the app and CI pipeline.
 
-- Reference `templates/main.js` for the keyboard and exit fixes.
-- Reference `templates/release.yml` for the CI/CD pipeline correctly assembling and signing the macOS `.app` bundle.
-- Reference `templates/README_MAC_INSTRUCTIONS.md` for Gatekeeper instructions.
+Use the `Read` tool to load the template files from the `templates/` directory relative to this SKILL.md file before implementing each phase.
+
+| Template | Purpose |
+|---|---|
+| `templates/main.js` | Drop-in replacement for Neutralino's default `main.js`. Contains both macOS fixes. |
+| `templates/release.yml` | GitHub Actions workflow. Contains all CI/CD steps with the 4 critical macOS fixes. |
+| `templates/README_MAC_INSTRUCTIONS.md` | End-user Gatekeeper instructions to paste into the project README. |
+
+### APP_NAME Substitution
+All templates use `MyApp` as a placeholder. When implementing, **replace every occurrence of `MyApp`** in `release.yml` with the actual app name the user provided in Phase 1. There are 8 occurrences:
+- 3× `APP_NAME="MyApp"` variable declarations
+- 5× `MyApp` in paths and filenames (`dist/MyApp`, `MyApp-macOS.app`, `MyApp-macOS.zip`, etc.)
+
+In `main.js`, update the `About` message box text to reflect the actual app name.
